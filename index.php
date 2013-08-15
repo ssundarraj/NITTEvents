@@ -12,7 +12,8 @@
 		$errormsg="";
 	?>
 	<a href="logout.php">Logout</a><br />
-	<a href="account.php">Account management</a>
+	<a href="account.php">Account management</a><br />
+	<a href="addevent.php">Add an event</a><br />
 	<form method="post" enctype="multipart/form-data" action="login.php">
 	    <table>
 	    <tbody>
