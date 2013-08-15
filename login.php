@@ -14,7 +14,7 @@
 				//echo $_POST['username'];
 				//echo $_POST['password'];
 				$valid=0; $found=0;
-				$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,"eventnotif");
+				$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
 				$sql="SELECT * FROM users";
 				$result=mysqli_query($con, $sql);
 				while($row=mysqli_fetch_array($result)){

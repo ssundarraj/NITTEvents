@@ -1,7 +1,7 @@
 <html>
 <head></head>
 <body>
-	<h1>Please Login</h1>
+	<h1>Event management</h1>
 	<?php
 		session_start();
 		require "dbconfig.ini";
@@ -11,10 +11,13 @@
 		}
 		$errormsg="";
 	?>
+	<a href="logout.php">Logout</a><br />
+	<a href="account.php">Account management</a>
 	<form method="post" enctype="multipart/form-data" action="login.php">
 	    <table>
 	    <tbody>
 	    <tr><?php echo $errormsg ?></tr>
+	    <tr></tr>
 		</tbody>
 		</table>
 	</form>
