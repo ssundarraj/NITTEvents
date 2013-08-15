@@ -22,7 +22,7 @@
 					$valid=0;
 					$nameerrmsg="Invalid name!";
 				}
-				if($_POST['name']==""){
+				if($_POST['desc']==""){
 					$valid=0;
 					$descerrmsg="Invalid description!";
 				}
@@ -37,7 +37,12 @@
 				}
 
 				if($valid==1){
-					
+					$date=$_POST['day']."-".$_POST['month']."-".$_POST['year'];
+					$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
+					$sql="INSERT INTO events (uid, ename, edesc, edate, etime, evenue) "
+						."VALUES ('$_SESSION[userid]', '$_POST[name]', '$_POST[desc]', '$date', '$_POST[time]', '$_POST[venue]')";
+					$result=mysqli_query($con, $sql);
+					mysql_close($con);
 					echo "Added";
 					echo "<META HTTP-EQUIV='refresh' content='1; URL=index.php'>";
 				}
@@ -69,7 +74,7 @@
 		<td><input type="text" decsription="time" name="time" id="time" size='5'><?php echo $timeerrmsg; ?></td></tr>
 
 		<tr><th><label for="venue">Event venue</label></th>
-		<td><select type="venue" decsription="venue" name="date" id="venue">
+		<td><select type="venue" decsription="venue" name="venue" id="venue">
 			<option value="Octagon">Octagon</option>
 			<option value="EEE Audi">EEE Audi</option>
 			<option value="A12 Hall">A12 Hall</option>
