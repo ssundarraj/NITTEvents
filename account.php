@@ -35,11 +35,13 @@
 					$result=mysqli_query($con, $sql);
 					mysql_close();
 					$successmsg="Password changed!";
+					header("Location: index.php");
+					exit();
 				}
 			}
 		}
 	?>
-	<a href="logout.php">Logout</a><br />
+	<a href="logout.php">Logout</a>
 	<a href="index.php">Go back</a><br />
 	<p><?php echo $successmsg; ?></p>
 	<h2>Change password:</h2>

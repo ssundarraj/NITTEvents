@@ -59,7 +59,7 @@
 			}
 		}
 	?>
-	<a href="logout.php">Logout</a><br />
+	<a href="logout.php">Logout</a>
 	<a href="index.php">Go back</a><br />
 	<form method="post" enctype="multipart/form-data" action="modify.php">
 	    <table>

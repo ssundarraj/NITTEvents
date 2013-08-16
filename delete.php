@@ -35,7 +35,7 @@
 			}
 		}
 	?>
-	<a href="logout.php">Logout</a><br />
+	<a href="logout.php">Logout</a>
 	<a href="index.php">Go back</a><br />
 	<p> Are you sure you want to delete the following event?</p>
 	<form method="post" enctype="multipart/form-data" action="delete.php">
