@@ -12,15 +12,31 @@
 		$errormsg="";
 	?>
 	<a href="logout.php">Logout</a><br />
-	<a href="account.php">Account management</a><br />
-	<a href="addevent.php">Add an event</a><br />
 	<form method="post" enctype="multipart/form-data" action="login.php">
-	    <table>
-	    <tbody>
-	    <tr><?php echo $errormsg ?></tr>
-	    <tr></tr>
-		</tbody>
-		</table>
+	<table border="2">
+	<tbody>
+		<tr><?php echo $errormsg ?></tr>
+		<tr>
+		<?php
+			$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
+			$sql="SELECT * FROM events ORDER BY eid DESC";
+			$result=mysqli_query($con, $sql);
+			$counter=0; $linebreak=2;
+			while($row=mysqli_fetch_array($result)){
+				if($counter===0||$counter % $linebreak===0){
+					echo "</tr><tr>";								
+				}
+				echo "<td><input type='radio' name='event' value='".$row['uid']."'>".$row['ename']."<p>".$row['edesc']."</p></td>";
+				$counter++;
+			}
+		?>
+		</tr>
+		<tr>
+			<td><button id="Modify" name="Modify">Modify</button></td>
+			<td><button id="Delete" name="Delete">Delete</button></td>
+		</tr>
+	</tbody>
+	</table>
 	</form>
 </body>
 </html>

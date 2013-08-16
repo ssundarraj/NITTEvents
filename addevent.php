@@ -82,7 +82,7 @@
 		</select>
 		<?php echo $venueerrmsg; ?>
 		</td></tr>
-		<tr><th><label for="Add"></label></th><td><button id="Add" name="Add">Add</button></td></tr>
+		<tr><th></th><td><button id="Add" name="Add">Add</button></td></tr>
 		</tbody>
 		</table>
 		Note: Enter the date in the format: (dd/mm/yyyy), and time in 24 hour format.
