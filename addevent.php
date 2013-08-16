@@ -7,7 +7,8 @@
 		require "dbconfig.ini";
 		if(!isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==0){
 			echo "Please log in.";
-			echo "<META HTTP-EQUIV='refresh' content='1; URL=login.php'>";
+			header('Location:  login.php');
+			exit();
 		}
 		else{
 			$errormsg="";
@@ -44,7 +45,8 @@
 					$result=mysqli_query($con, $sql);
 					mysql_close($con);
 					echo "Added";
-					echo "<META HTTP-EQUIV='refresh' content='1; URL=index.php'>";
+					header('Location:  index.php');
+					exit();
 				}
 			}
 		}

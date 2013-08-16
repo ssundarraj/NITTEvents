@@ -7,7 +7,8 @@
 		require "dbconfig.ini";
 		if(!isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==0){
 			echo "Please log in.";
-			echo "<META HTTP-EQUIV='refresh' content='1; URL=login.php'>";
+			header('Location:  login.php');
+			exit();
 		}
 		else{
 			$errormsg="";
@@ -18,9 +19,10 @@
 				else{
 					$_SESSION['eid']=$_POST['event'];
 					if($_POST['action']=='Modify')
-						echo "<META HTTP-EQUIV='refresh' content='1; URL=modify.php'>";
+						header('Location:  modify.php');
 					else if($_POST['action']='Delete')
-						echo "<META HTTP-EQUIV='refresh' content='1; URL=delete.php'>";
+						header('Location:  delete.php');
+					exit();	
 				}
 			}
 		}

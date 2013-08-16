@@ -7,7 +7,8 @@
 		require "dbconfig.ini";
 		if(isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==1){
 			echo "Already logged in";
-			echo "<META HTTP-EQUIV='refresh' content='1; URL=index.php'>";
+			header('Location:  index.php');
+			exit();
 		}
 		else{
 			if(isset($_POST['username'])&&isset($_POST['password'])){
@@ -32,7 +33,8 @@
 					$_SESSION['logged_in']=1;
 					$_SESSION['userid']=$uid;
 					echo "Valid credentials";
-					echo "<META HTTP-EQUIV='refresh' content='1; URL=index.php'>";
+					header('Location:  index.php');
+					exit();	
 				}
 				else{
 					$errormsg="Please enter valid login parameters";

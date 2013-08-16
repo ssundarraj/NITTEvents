@@ -8,7 +8,8 @@
 		require "dbconfig.ini";
 		if(!isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==0){
 			echo "Please log in.";
-			echo "<META HTTP-EQUIV='refresh' content='1; URL=login.php'>";
+			header('Location:  login.php');
+			exit();
 		}
 		else{
 			if(isset($_POST['password'])&&isset($_POST['newpassword'])&&isset($_POST['newpasswordrpt'])){
