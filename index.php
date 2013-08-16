@@ -9,10 +9,24 @@
 			echo "Please log in.";
 			echo "<META HTTP-EQUIV='refresh' content='1; URL=login.php'>";
 		}
-		$errormsg="";
+		else{
+			$errormsg="";
+			if(isset($_POST['action'])){
+				if(!isset($_POST['event'])){
+					$errormsg='Please select a valid option.';
+				}
+				else{
+					$_SESSION['eid']=$_POST['event'];
+					if($_POST['action']=='Modify')
+						echo "<META HTTP-EQUIV='refresh' content='1; URL=modify.php'>";
+					else if($_POST['action']='Delete')
+						echo "<META HTTP-EQUIV='refresh' content='1; URL=delete.php'>";
+				}
+			}
+		}
 	?>
 	<a href="logout.php">Logout</a><br />
-	<form method="post" enctype="multipart/form-data" action="login.php">
+	<form method="post" enctype="multipart/form-data" action="index.php">
 	<table border="2">
 	<tbody>
 		<tr><?php echo $errormsg ?></tr>
@@ -32,8 +46,8 @@
 		?>
 		</tr>
 		<tr>
-			<td><button id="Modify" name="Modify">Modify</button></td>
-			<td><button id="Delete" name="Delete">Delete</button></td>
+			<td><input type='submit' id="Modify" name="action" value='Modify'/></td>
+			<td><input type='submit' id="Delete" name="action" value='Delete'/></td>
 		</tr>
 	</tbody>
 	</table>
