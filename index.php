@@ -40,7 +40,7 @@
 				if($counter===0||$counter % $linebreak===0){
 					echo "</tr><tr>";								
 				}
-				echo "<td><input type='radio' name='event' value='".$row['uid']."'>".$row['ename']."<p>".$row['edesc']."</p></td>";
+				echo "<td><input type='radio' name='event' value='".$row['eid']."'>".$row['ename']."<p>".$row['edesc']."</p></td>";
 				$counter++;
 			}
 		?>
