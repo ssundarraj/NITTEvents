@@ -1,7 +1,7 @@
 <html>
 <head></head>
 <body>
-	<h1>Event management</h1>
+	<h1>Add event</h1>
 	<?php
 		session_start();
 		require "dbconfig.ini";
