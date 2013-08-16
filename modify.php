@@ -51,7 +51,6 @@
 					$result=mysqli_query($con, $sql);
 					mysql_close($con);
 					echo "Modified";
-					echo $sql;
 					echo "<META HTTP-EQUIV='refresh' content='1; URL=index.php'>";
 				}
 			}
