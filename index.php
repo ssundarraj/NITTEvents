@@ -37,7 +37,7 @@
 		<tr>
 		<?php
 			$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
-			$sql="SELECT * FROM events ORDER BY eid DESC";
+			$sql="SELECT * FROM events WHERE UID=$_SESSION[userid] ORDER BY eid DESC";
 			$result=mysqli_query($con, $sql);
 			$counter=0; $linebreak=2;
 			while($row=mysqli_fetch_array($result)){

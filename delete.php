@@ -4,6 +4,13 @@
 	<h1>Delete event</h1>
 	<?php
 		session_start();
+		$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
+		$sql="SELECT * FROM events "
+			."WHERE eid='$_SESSION[eid]'";
+		$result=mysqli_query($con, $sql);
+		$row=mysqli_fetch_array($result);
+		$userid=$row['uid'];
+		mysql_close($con);
 		require "dbconfig.ini";
 		if(!isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==0){
 			echo "Please log in.";
@@ -12,6 +19,10 @@
 		}
 		else if(!isset($_SESSION['eid'])){
 			echo("Select an option!");
+			header('Location:  index.php');
+			exit();
+		}
+		else if($userid!=$_SESSION['userid']){
 			header('Location:  index.php');
 			exit();
 		}
