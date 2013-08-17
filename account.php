@@ -19,7 +19,7 @@
 				$result=mysqli_query($con, $sql);
 				while($row=mysqli_fetch_array($result)){
 					if($row['uid']==$_SESSION['userid']){
-						if($row['password']==$_POST['password'])
+						if($row['password']==md5($_POST['password']))
 							$found=1;
 						else $errormsg="Incorrect password. ";
 					}
@@ -29,9 +29,9 @@
 					$valid=1;
 				else
 					$errormsg=$errormsg."Passwords do not match.";
-				if($found==1&&$valid==1){//not changing here for some reason
+				if($found==1&&$valid==1){
 					$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS, $MYDB_DB);
-					$sql="UPDATE users SET password= '".$_POST['newpassword']."' WHERE uid=$_SESSION[userid]";
+					$sql="UPDATE users SET password= '".md5($_POST['newpassword'])."' WHERE uid=$_SESSION[userid]";
 					$result=mysqli_query($con, $sql);
 					mysql_close();
 					$successmsg="Password changed!";

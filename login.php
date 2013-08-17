@@ -14,14 +14,13 @@
 			if(isset($_POST['username'])&&isset($_POST['password'])){
 				//echo $_POST['username'];
 				//echo $_POST['password'];
-				$valid=0; $found=0;
+				$valid=0;
 				$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
 				$sql="SELECT * FROM users";
 				$result=mysqli_query($con, $sql);
 				while($row=mysqli_fetch_array($result)){
 					if($row['username']==$_POST['username']){
-						//$found=1;
-						if($row['password']==$_POST['password']){
+						if($row['password']==md5($_POST['password'])){
 							$valid=1;
 							$uid=$row['uid'];
 						}
