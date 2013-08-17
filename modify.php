@@ -47,8 +47,12 @@
 				if($valid==1){
 					$date=$_POST['day']."-".$_POST['month']."-".$_POST['year'];
 					$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
-					$sql="UPDATE events SET ename='$_POST[name]', edesc='$_POST[desc]', "
-						."edate='$date', etime='$_POST[time]', evenue='$_POST[venue]' "
+					$name=mysql_real_escape_string($_POST['name']);
+					$desc=mysql_real_escape_string($_POST['desc']);
+					$time=mysql_real_escape_string($_POST['time']);
+					$venue=mysql_real_escape_string($_POST['venue']);			
+					$sql="UPDATE events SET ename='$name', edesc='$desc', "
+						."edate='$date', etime='$time', evenue='$venue' "
 						."WHERE eid='$eid'";
 					$result=mysqli_query($con, $sql);
 					mysql_close($con);

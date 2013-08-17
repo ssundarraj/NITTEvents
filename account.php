@@ -31,7 +31,8 @@
 					$errormsg=$errormsg."Passwords do not match.";
 				if($found==1&&$valid==1){
 					$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS, $MYDB_DB);
-					$sql="UPDATE users SET password= '".md5($_POST['newpassword'])."' WHERE uid=$_SESSION[userid]";
+					$newpassword=mysql_real_escape_string($_POST['newpassword']);
+					$sql="UPDATE users SET password= '".md5($newpassword)."' WHERE uid=$_SESSION[userid]";
 					$result=mysqli_query($con, $sql);
 					mysql_close();
 					$successmsg="Password changed!";

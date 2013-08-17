@@ -29,6 +29,7 @@
 	?>
 	<a href="logout.php">Logout</a>
 	<a href="account.php">Manage Account</a><br />
+	<a href="addevent.php">Add event</a>
 	<form method="post" enctype="multipart/form-data" action="index.php">
 	<table border="2">
 	<tbody>

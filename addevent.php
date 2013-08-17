@@ -40,8 +40,12 @@
 				if($valid==1){
 					$date=$_POST['day']."-".$_POST['month']."-".$_POST['year'];
 					$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
+					$name=mysql_real_escape_string($_POST['name']);
+					$desc=mysql_real_escape_string($_POST['desc']);
+					$time=mysql_real_escape_string($_POST['time']);
+					$venue=mysql_real_escape_string($_POST['venue']);
 					$sql="INSERT INTO events (uid, ename, edesc, edate, etime, evenue) "
-						."VALUES ('$_SESSION[userid]', '$_POST[name]', '$_POST[desc]', '$date', '$_POST[time]', '$_POST[venue]')";
+						."VALUES ('$_SESSION[userid]', '$name', '$desc', '$date', '$time', '$venue')";
 					$result=mysqli_query($con, $sql);
 					mysql_close($con);
 					echo "Added";
