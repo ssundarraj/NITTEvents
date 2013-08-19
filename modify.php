@@ -2,6 +2,8 @@
 <head>
 	<title>NITT Events - Modify Event</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3XEhUpJAW7vlS7WE6325ZSHijZkLd4BU&sensor=false"></script>
+	<script src="modifyevent_script.js"></script>
 </head>
 <body>
 	<h1>Modify event</h1>
@@ -57,6 +59,11 @@
 					$valid=0;
 					$timeerrmsg="Invalid time!";
 				}
+				if($_POST['lat']==0&&$_POST['lng']==0){
+					$valid=0;
+					$venueerrmsg="Invalid selection!";
+					echo "WTF";	
+				}
 
 				if($valid==1){
 					//Changing the data if needed:
@@ -67,9 +74,10 @@
 					$time=mysql_real_escape_string($_POST['time']);
 					$venue=mysql_real_escape_string($_POST['venue']);			
 					$sql="UPDATE events SET ename='$name', edesc='$desc', "
-						."edate='$date', etime='$time', evenue='$venue' "
+						."edate='$date', etime='$time', lat='$_POST[lat]', lng='$_POST[lng]' "
 						."WHERE eid='$eid'";
 					$result=mysqli_query($con, $sql);
+					echo $sql;
 					mysql_close($con);
 					echo "Modified";
 					header('Location:  index.php');
@@ -105,18 +113,14 @@
 		<td><input type="text" decsription="time" name="time" id="time" size='5' value=<?php echo $row['etime'] ?>>
 			<?php echo $timeerrmsg; ?></td></tr>
 
-		<tr><th><label for="venue">Event venue</label></th>
-		<td><select type="venue" decsription="venue" name="venue" id="venue" value=<?php echo $row['evenue'] ?>>
-			<option value="Octagon">Octagon</option>
-			<option value="EEE Audi">EEE Audi</option>
-			<option value="A12 Hall">A12 Hall</option>
-			<option value="A3 Hall">A3 Hall</option>
-		</select>
-		<?php echo $venueerrmsg; ?>
-		</td></tr>
-		<tr><th></th><td><button id="Modify" name="Modify">Modify</button></td></tr>
 		</tbody>
 		</table>
+		<input type="text" decsription="lat" name="lat" id="lat" hidden='hidden' value=<?php echo $row['lat'] ?>>
+		<input type="text" decsription="lng" name="lng" id="lng" hidden='hidden' value=<?php echo $row['lng'] ?>>
+		Select event venue
+		<?php echo $venueerrmsg; ?>
+		<div id="googleMap" style="width:500px;height:380px;"></div>
+		<button id="Modify" name="Modify">Modify</button><br />
 		Note: Enter the date in the format: (dd/mm/yyyy), and time in 24 hour format.
 	</form>
 </body>

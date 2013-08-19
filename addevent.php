@@ -2,6 +2,9 @@
 <head>
 	<title>NITT Events - Add Event</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3XEhUpJAW7vlS7WE6325ZSHijZkLd4BU&sensor=false"></script>
+	<script src="addevent_script.js"></script>
+	
 </head>
 <body>
 	<h1>Add event</h1>
@@ -40,6 +43,10 @@
 					$valid=0;
 					$timeerrmsg="Invalid time!";
 				}
+				if($_POST['lat']==0&&$_POST['lng']==0){
+					$valid=0;
+					$venueerrmsg="Invalid selection!";
+				}
 
 				if($valid==1){//inserting if valid
 					$date=$_POST['day']."-".$_POST['month']."-".$_POST['year'];
@@ -48,8 +55,8 @@
 					$desc=mysql_real_escape_string($_POST['desc']);
 					$time=mysql_real_escape_string($_POST['time']);
 					$venue=mysql_real_escape_string($_POST['venue']);
-					$sql="INSERT INTO events (uid, ename, edesc, edate, etime, evenue) "
-						."VALUES ('$_SESSION[userid]', '$name', '$desc', '$date', '$time', '$venue')";
+					$sql="INSERT INTO events (uid, ename, edesc, edate, etime, lat, lng) "
+						."VALUES ('$_SESSION[userid]', '$name', '$desc', '$date', '$time', '$_POST[lat]', '$_POST[lng]')";
 					$result=mysqli_query($con, $sql);
 					mysql_close($con);
 					echo "Added";
@@ -83,18 +90,14 @@
 		<tr><th><label for="time">Event time</label></th>
 		<td><input type="text" decsription="time" name="time" id="time" size='5'><?php echo $timeerrmsg; ?></td></tr>
 
-		<tr><th><label for="venue">Event venue</label></th>
-		<td><select type="venue" decsription="venue" name="venue" id="venue">
-			<option value="Octagon">Octagon</option>
-			<option value="EEE Audi">EEE Audi</option>
-			<option value="A12 Hall">A12 Hall</option>
-			<option value="A3 Hall">A3 Hall</option>
-		</select>
-		<?php echo $venueerrmsg; ?>
-		</td></tr>
-		<tr><th></th><td><button id="Add" name="Add">Add</button></td></tr>
+		<tr><th><label for="venue">Select event venue</label></th></tr>
 		</tbody>
 		</table>
+		<input type="text" decsription="lat" name="lat" id="lat" hidden='hidden'>
+		<input type="text" decsription="lng" name="lng" id="lng" hidden='hidden'>
+		<?php echo $venueerrmsg; ?>
+		<div id="googleMap" style="width:500px;height:380px;"></div>
+		<td><button id="Add" name="Add">Add</button><br />
 		Note: Enter the date in the format: (dd/mm/yyyy), and time in 24 hour format.
 	</form>
 </body>
