@@ -4,6 +4,7 @@
 	<h1>Delete event</h1>
 	<?php
 		session_start();
+		require "dbconfig.ini";
 		$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
 		$sql="SELECT * FROM events "
 			."WHERE eid='$_SESSION[eid]'";
@@ -49,6 +50,16 @@
 	<a href="logout.php">Logout</a>
 	<a href="index.php">Go back</a><br />
 	<p> Are you sure you want to delete the following event?</p>
+	<?php
+		$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
+		$sql="SELECT * FROM events "
+			."WHERE eid='$_SESSION[eid]'";
+		$result=mysqli_query($con, $sql);
+		$row=mysqli_fetch_array($result);
+		echo "<p>".$row['ename']."<br />".$row['edesc']."<br />On: ".$row['edate']." at: ".$row['etime']
+			."<br /> At: ".$row['evenue'];
+		mysql_close($con);
+	?>
 	<form method="post" enctype="multipart/form-data" action="delete.php">
 	    <input type='submit' id="Yes" name="action" value='Yes'/>
 	    <input type='submit' id="No" name="action" value='No'/>
