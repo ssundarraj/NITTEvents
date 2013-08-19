@@ -4,6 +4,7 @@
 	<h1>Modify event</h1>
 	<?php
 		session_start();
+		require "dbconfig.ini";
 		$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
 		$sql="SELECT * FROM events "
 			."WHERE eid='$_SESSION[eid]'";
@@ -11,7 +12,6 @@
 		$row=mysqli_fetch_array($result);
 		$userid=$row['uid'];
 		mysql_close($con);
-		require "dbconfig.ini";
 		if(!isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==0){
 			echo "Please log in.";
 			header('Location:  login.php');
@@ -28,7 +28,6 @@
 		}
 		else{
 			$eid=$_SESSION['eid'];
-			unset($_SESSION['eid']);
 			$errormsg="";
 			$nameerrmsg="";
 			$descerrmsg="";
@@ -82,24 +81,27 @@
 	    <tr><td colspan='2'><?php echo $errormsg ?></td></tr>
 
 	    <tr><th><label for="name">Event name</label></th>
-	    <td><input type="text" decsription="name" name="name" id="name"><?php echo $nameerrmsg; ?></td></tr>
+	    <td><input type="text" decsription="name" name="name" id="name" value=<?php echo $row['ename'] ?>>
+	    	<?php echo $nameerrmsg; ?></td></tr>
 
 		<tr><th><label for="desc">Description</label></th>
-		<td><input type="text" rows="4" cols="50" decsription="desc" name="desc" id="desc"><?php echo $descerrmsg; ?></td></tr>
+		<td><input type="text" rows="4" cols="50" decsription="desc" name="desc" id="desc" value=<?php echo $row['edesc'] ?>>
+			<?php echo $descerrmsg; ?></td></tr>
 
 		<tr><th><label >Event date</label></th>
 		<td>
-			<input type="text" decsription="day" name="day" id="day" size='2' value="dd" onclick="this.value='';">-
-			<input type="text" decsription="month" name="month" id="month" size='2' value="mm" onclick="this.value='';">-
-			<input type="text" decsription="year" name="year" id="year" size='2' value="yyyy" onclick="this.value='';">
+			<input type="text" decsription="day" name="day" id="day" size='2' value=<?php echo substr($row['edate'], 0,2) ?>>-
+			<input type="text" decsription="month" name="month" id="month" size='2' value=<?php echo substr($row['edate'], 3,2) ?>>-
+			<input type="text" decsription="year" name="year" id="year" size='2' value=<?php echo substr($row['edate'], 6, 4) ?>>
 			<?php echo $dateerrmsg; ?>
 		</td></tr>
 
 		<tr><th><label for="time">Event time</label></th>
-		<td><input type="text" decsription="time" name="time" id="time" size='5'><?php echo $timeerrmsg; ?></td></tr>
+		<td><input type="text" decsription="time" name="time" id="time" size='5' value=<?php echo $row['etime'] ?>>
+			<?php echo $timeerrmsg; ?></td></tr>
 
 		<tr><th><label for="venue">Event venue</label></th>
-		<td><select type="venue" decsription="venue" name="venue" id="venue">
+		<td><select type="venue" decsription="venue" name="venue" id="venue" value=<?php echo $row['evenue'] ?>>
 			<option value="Octagon">Octagon</option>
 			<option value="EEE Audi">EEE Audi</option>
 			<option value="A12 Hall">A12 Hall</option>
