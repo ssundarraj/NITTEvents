@@ -9,12 +9,6 @@ function initialize(){
 	
 	map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
-	google.maps.event.addListener(map, 'click', function(event) {
-		placeMarker(event.latLng);
-	});
-
-	//var oldlat="<?php echo $row['lat'] ?>";
-	//var oldlng="<?php echo $row['lng'] ?>";
 	var oldloc = new google.maps.LatLng(oldlat, oldlng);
 	console.log(oldloc);
 
@@ -22,17 +16,6 @@ function initialize(){
 	 	position: oldloc,
 	 	map: map,
 	});
-}
-
-function placeMarker(location){
-	marker.setMap(null);
-	marker = new google.maps.Marker({
-		position: location,
-		map: map,
-	});
-	placed=1;
-	document.getElementById('lat').value=location.lat();
-	document.getElementById('lng').value=location.lng();
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
