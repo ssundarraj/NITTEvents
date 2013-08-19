@@ -1,5 +1,8 @@
 <html>
-<head></head>
+<head>
+	<title>NITTEvents - Account Management</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
 <body>
 	<h1>Account management</h1>
 	<?php

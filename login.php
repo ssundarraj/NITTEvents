@@ -1,5 +1,8 @@
 <html>
-<head></head>
+<head>
+	<title>NITT Events - Login</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
 <body>
 	<h1>Please Login</h1>
 	<?php

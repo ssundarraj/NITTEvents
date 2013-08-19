@@ -1,5 +1,8 @@
 <html>
-<head></head>
+<head>
+	<title>NITT Events - Add Event</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
 <body>
 	<h1>Add event</h1>
 	<?php

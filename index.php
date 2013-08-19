@@ -1,5 +1,8 @@
 <html>
-<head></head>
+<head>
+	<title>NITT Events - Event Management</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
 <body>
 	<h1>Event management</h1>
 	<?php
