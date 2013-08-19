@@ -8,6 +8,7 @@
 	<?php
 		session_start();
 		require "dbconfig.ini";
+		//getting the row corresponding to the entry
 		$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
 		$sql="SELECT * FROM events "
 			."WHERE eid='$_SESSION[eid]'";
@@ -15,7 +16,7 @@
 		$row=mysqli_fetch_array($result);
 		$userid=$row['uid'];
 		mysql_close($con);
-		if(!isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==0){
+		if(!isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==0){//checking if logged in
 			echo "Please log in.";
 			header('Location:  login.php');
 			exit();
@@ -25,13 +26,13 @@
 			header('Location:  index.php');
 			exit();
 		}
-		else if($userid!=$_SESSION['userid']){
+		else if($userid!=$_SESSION['userid']){//checking if the entry belongs to the user
 			header('Location:  index.php');
 			exit();
 		}
 		else{
 			$eid=$_SESSION['eid'];
-			$errormsg="";
+			$errormsg="";//initializing error messages
 			$nameerrmsg="";
 			$descerrmsg="";
 			$dateerrmsg="";
@@ -58,6 +59,7 @@
 				}
 
 				if($valid==1){
+					//Changing the data if needed:
 					$date=$_POST['day']."-".$_POST['month']."-".$_POST['year'];
 					$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
 					$name=mysql_real_escape_string($_POST['name']);

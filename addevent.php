@@ -8,19 +8,20 @@
 	<?php
 		session_start();
 		require "dbconfig.ini";
-		if(!isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==0){
+		if(!isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==0){//Checking if logged in
 			echo "Please log in.";
 			header('Location:  login.php');
 			exit();
 		}
 		else{
-			$errormsg="";
+			$errormsg="";//Initialiing error messages
 			$nameerrmsg="";
 			$descerrmsg="";
 			$dateerrmsg="";
 			$timeerrmsg="";
 			$venueerrmsg="";
 			$valid=1;
+			//Validating parameters:
 			if(isset($_POST['name'])){
 				if($_POST['name']==""){
 					$valid=0;
@@ -40,7 +41,7 @@
 					$timeerrmsg="Invalid time!";
 				}
 
-				if($valid==1){
+				if($valid==1){//inserting if valid
 					$date=$_POST['day']."-".$_POST['month']."-".$_POST['year'];
 					$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
 					$name=mysql_real_escape_string($_POST['name']);

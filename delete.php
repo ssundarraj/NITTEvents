@@ -13,15 +13,15 @@
 			."WHERE eid='$_SESSION[eid]'";
 		$result=mysqli_query($con, $sql);
 		$row=mysqli_fetch_array($result);
-		$userid=$row['uid'];
+		$userid=$row['uid'];//getting the row corresponding to the entry
 		mysql_close($con);
 		require "dbconfig.ini";
-		if(!isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==0){
+		if(!isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==0){//checking if logged in
 			echo "Please log in.";
 			header('Location:  login.php');
 			exit();
 		}
-		else if(!isset($_SESSION['eid'])){
+		else if(!isset($_SESSION['eid'])){//checking if form is submitted
 			echo("Select an option!");
 			header('Location:  index.php');
 			exit();
@@ -30,7 +30,7 @@
 			header('Location:  index.php');
 			exit();
 		}
-		else{
+		else{//Deleting
 			$eid=$_SESSION['eid'];
 			if(isset($_POST['action'])){
 				if($_POST['action']=='Yes'){
@@ -54,6 +54,7 @@
 	<a href="index.php">Go back</a><br />
 	<p> Are you sure you want to delete the following event?</p>
 	<?php
+		//Displaying the data of the entry
 		$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
 		$sql="SELECT * FROM events "
 			."WHERE eid='$_SESSION[eid]'";

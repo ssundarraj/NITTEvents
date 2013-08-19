@@ -8,14 +8,14 @@
 	<?php
 		session_start();
 		require "dbconfig.ini";
-		if(!isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==0){
+		if(!isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==0){//checking if logged in
 			echo "Please log in.";
 			header('Location:  login.php');
 			exit();
 		}
 		else{
 			$errormsg="";
-			if(isset($_POST['action'])){
+			if(isset($_POST['action'])){//checking if form has been submitted
 				if(!isset($_POST['event'])){
 					$errormsg='Please select a valid option.';
 				}
@@ -43,6 +43,7 @@
 			$sql="SELECT * FROM events WHERE UID=$_SESSION[userid] ORDER BY eid DESC";
 			$result=mysqli_query($con, $sql);
 			$counter=0; $linebreak=2;
+			//Displaying events in a table:
 			while($row=mysqli_fetch_array($result)){
 				if($counter===0||$counter % $linebreak===0){
 					echo "</tr><tr>";								

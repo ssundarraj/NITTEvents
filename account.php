@@ -9,30 +9,30 @@
 		session_start();
 		$errormsg=""; $successmsg="";
 		require "dbconfig.ini";
-		if(!isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==0){
+		if(!isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==0){//Checking if logged in
 			echo "Please log in.";
 			header('Location:  login.php');
 			exit();
 		}
 		else{
-			if(isset($_POST['password'])&&isset($_POST['newpassword'])&&isset($_POST['newpasswordrpt'])){
+			if(isset($_POST['password'])&&isset($_POST['newpassword'])&&isset($_POST['newpasswordrpt'])){//checking if form has been submitted
 				$found=0; $valid=0;
 				$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
 				$sql="SELECT * FROM users";
 				$result=mysqli_query($con, $sql);
 				while($row=mysqli_fetch_array($result)){
-					if($row['uid']==$_SESSION['userid']){
+					if($row['uid']==$_SESSION['userid']){//checking if old password is correct
 						if($row['password']==md5($_POST['password']))
 							$found=1;
 						else $errormsg="Incorrect password. ";
 					}
 				}
 				mysql_close($con);
-				if($_POST['newpassword']==$_POST['newpasswordrpt'])
+				if($_POST['newpassword']==$_POST['newpasswordrpt'])//checking if the new passwords match
 					$valid=1;
 				else
 					$errormsg=$errormsg."Passwords do not match.";
-				if($found==1&&$valid==1){
+				if($found==1&&$valid==1){//changing password
 					$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS, $MYDB_DB);
 					$newpassword=mysql_real_escape_string($_POST['newpassword']);
 					$sql="UPDATE users SET password= '".md5($newpassword)."' WHERE uid=$_SESSION[userid]";
