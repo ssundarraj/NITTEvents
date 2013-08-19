@@ -66,7 +66,7 @@
 	    <td><input type="text" decsription="name" name="name" id="name"><?php echo $nameerrmsg; ?></td></tr>
 
 		<tr><th><label for="desc">Description</label></th>
-		<td><input type="text" rows="4" cols="50" decsription="desc" name="desc" id="desc"><?php echo $descerrmsg; ?></td></tr>
+		<td><textarea type="text" rows="4" cols="50" decsription="desc" name="desc" id="desc"></textarea><?php echo $descerrmsg; ?></td></tr>
 
 		<tr><th><label >Event date</label></th>
 		<td>

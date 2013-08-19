@@ -85,7 +85,7 @@
 	    	<?php echo $nameerrmsg; ?></td></tr>
 
 		<tr><th><label for="desc">Description</label></th>
-		<td><input type="text" rows="4" cols="50" decsription="desc" name="desc" id="desc" value=<?php echo $row['edesc'] ?>>
+		<td><textarea type="text" rows="4" cols="50" decsription="desc" name="desc" id="desc"><?php echo $row['edesc'] ?></textarea>
 			<?php echo $descerrmsg; ?></td></tr>
 
 		<tr><th><label >Event date</label></th>
