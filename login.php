@@ -1,20 +1,20 @@
 <html>
 <head>
-	<title>NITT Events - Login</title>
+	<title>NewsFlash</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 	<h1>Please Login</h1>
 	<?php
 		session_start();
-		require "dbconfig.ini";/
+		require "dbconfig.ini";
 		if(isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==1){//Checking if already logged in
 			echo "Already logged in";
 			header('Location:  index.php');
 			exit();
 		}
 		else{
-			if(isset($_POST['username'])&&isset($_POST['password'])){//checking validity of credentials
+			if(isset($_POST['username'])&&isset($_POST['password'])){//checking credentials
 				$valid=0;
 				$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
 				$sql="SELECT * FROM users";
@@ -33,7 +33,7 @@
 					$_SESSION['logged_in']=1;
 					$_SESSION['userid']=$uid;
 					echo "Valid credentials";
-					header('Location:  index.php');//redirecting if not valid
+					header('Location:  index.php');
 					exit();	
 				}
 				else{
