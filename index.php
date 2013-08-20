@@ -45,20 +45,18 @@
 			$counter=0; $linebreak=2;
 			//Displaying events in a table:
 			while($row=mysqli_fetch_array($result)){
-				if($counter===0||$counter % $linebreak===0){
-					echo "</tr><tr>";								
-				}
-				echo "<td><input type='radio' name='event' value='".$row['eid']."'>".$row['ename']."<p>".$row['edesc']."</p></td>";
+				echo "</tr><tr>";
+				echo "<td><input type='radio' name='event' value='".$row['eid']
+					."'></td><td>".$row['ename']."</td><td>".$row['edesc']."</td><td>"
+					.$row['etime']."</td><td>".$row['lat'].", ".$row['lng']."</td>";
 				$counter++;
 			}
 		?>
 		</tr>
-		<tr>
-			<td><input type='submit' id="Modify" name="action" value='Modify'/></td>
-			<td><input type='submit' id="Delete" name="action" value='Delete'/></td>
-		</tr>
 	</tbody>
 	</table>
+		<input type='submit' id="Modify" name="action" value='Modify'/>
+		<input type='submit' id="Delete" name="action" value='Delete'/>
 	</form>
 </body>
 </html>
