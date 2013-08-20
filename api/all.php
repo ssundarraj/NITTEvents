@@ -7,7 +7,7 @@
 	while($row=mysqli_fetch_array($result)){
 		$event=array("eid"=> $row['eid'], "uid"=> $row['uid'],"ename"=>$row['ename'], 
 					"edesc"=>$row['edesc'], "edate"=>$row['edate'], "etime"=>$row['etime'],
-					"evenue"=>$row['evenue']);
+					"lat"=>$row['lat'], "lng"=>$row['lng']);
 		array_push($events, $event);
 	}
 	echo json_encode($events);
