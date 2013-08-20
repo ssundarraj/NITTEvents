@@ -23,6 +23,9 @@
 			$dateerrmsg="";
 			$timeerrmsg="";
 			$venueerrmsg="";
+			$dayval='dd';
+			$monval='mm';
+			$yearval='yyyy';
 			$valid=1;
 			//Validating parameters:
 			if(isset($_POST['name'])){
@@ -63,6 +66,9 @@
 					header('Location:  index.php');
 					exit();
 				}
+				$dayval=$_POST['day'];
+				$monval=$_POST['month'];
+				$yearval=$_POST['year'];
 			}
 		}
 	?>
@@ -74,21 +80,22 @@
 	    <tr><td colspan='2'><?php echo $errormsg ?></td></tr>
 
 	    <tr><th><label for="name">Event name</label></th>
-	    <td><input type="text" decsription="name" name="name" id="name"><?php echo $nameerrmsg; ?></td></tr>
+	    <td><input type="text" decsription="name" name="name" id="name" value=<?php echo $_POST['name']; ?>><?php echo $nameerrmsg; ?></td></tr>
 
 		<tr><th><label for="desc">Description</label></th>
-		<td><textarea type="text" rows="4" cols="50" decsription="desc" name="desc" id="desc"></textarea><?php echo $descerrmsg; ?></td></tr>
+		<td><textarea type="text" rows="4" cols="50" decsription="desc" name="desc" id="desc"><?php echo $_POST['desc']; ?></textarea>
+			<?php echo $descerrmsg; ?></td></tr>
 
 		<tr><th><label >Event date</label></th>
 		<td>
-			<input type="text" decsription="day" name="day" id="day" size='2' value="dd" onclick="this.value='';">-
-			<input type="text" decsription="month" name="month" id="month" size='2' value="mm" onclick="this.value='';">-
-			<input type="text" decsription="year" name="year" id="year" size='2' value="yyyy" onclick="this.value='';">
+			<input type="text" decsription="day" name="day" id="day" size='2' value=<?php echo $dayval ?> onclick="this.value='';">-
+			<input type="text" decsription="month" name="month" id="month" size='2' value=<?php echo $monval ?> onclick="this.value='';">-
+			<input type="text" decsription="year" name="year" id="year" size='2' value=<?php echo $yearval ?> onclick="this.value='';">
 			<?php echo $dateerrmsg; ?>
 		</td></tr>
 
 		<tr><th><label for="time">Event time</label></th>
-		<td><input type="text" decsription="time" name="time" id="time" size='5'><?php echo $timeerrmsg; ?></td></tr>
+		<td><input type="text" decsription="time" name="time" id="time" size='5' value=<?php echo $_POST['time']; ?>><?php echo $timeerrmsg; ?></td></tr>
 
 		<tr><th><label for="venue">Select event venue</label></th></tr>
 		</tbody>
@@ -97,7 +104,7 @@
 		<input type="text" decsription="lng" name="lng" id="lng" hidden='hidden'>
 		<?php echo $venueerrmsg; ?>
 		<div id="googleMap" style="width:500px;height:380px;"></div>
-		<td><button id="Add" name="Add">Add</button><br />
+		<td><input type='submit' id="Add" name="Add" value='Add'><br />
 		Note: Enter the date in the format: (dd/mm/yyyy), and time in 24 hour format.
 	</form>
 </body>
