@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>NewsFlash</title>
+	<title>NITTEvents - Login</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
