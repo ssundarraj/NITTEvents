@@ -5,7 +5,7 @@
 	$query="SELECT * FROM tokens";
 	$res=mysqli_query($con, $query);
 	while($row=mysqli_fetch_array($res)){
-		if($row['token']==$_POST['token'])
+		if($row['token']==$_GET['token'])
 			$valid=1;
 	}
 	if($valid){
@@ -18,7 +18,8 @@
 						"lat"=>$row['lat'], "lng"=>$row['lng']);
 			array_push($events, $event);
 		}
-		echo json_encode($events);
+		$obj=array("data"=>$events);
+		echo json_encode($obj);		
 	}
 	else{
 		echo json_encode("err1");
