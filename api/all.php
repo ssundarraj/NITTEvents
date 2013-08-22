@@ -24,5 +24,5 @@
 	else{
 		echo json_encode("err1");
 	}
-	mysql_close($con);
+	mysqli_close($con);
 ?>
