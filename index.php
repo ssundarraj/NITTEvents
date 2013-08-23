@@ -37,6 +37,7 @@
 	<form method="post" enctype="multipart/form-data" action="index.php">
 	<table border="2">
 	<tbody>
+		<th></th><th>Name</th><th>Description</th><th>Time</th><th>Venue</th><th>Location</th>
 		<tr><?php echo $errormsg ?></tr>
 		<tr>
 		<?php
