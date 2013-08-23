@@ -71,6 +71,7 @@
 		$row=mysqli_fetch_array($result);
 		echo "<p>".$row['ename']."<br />".$row['edesc']."<br />On: ".$row['edate']." at: ".$row['etime']
 			."<br />At: ".$row['evenue']."</p>";
+		echo "Existing picture:<img src='".$row['pic']."' height=60px />";
 		mysqli_close($con);
 	?>
 	<div id="googleMap" style="width:500px;height:380px;"></div>

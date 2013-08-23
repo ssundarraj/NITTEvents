@@ -46,13 +46,24 @@
 					$valid=0;
 					$timeerrmsg="Invalid time!";
 				}
-				if($_POST['lat']==0&&$_POST['lng']==0){
-					$valid=0;
+				if($_POST['lat']==0||$_POST['lng']==0){
+					//$valid=0;
 					$locnerrmsg="Invalid selection!";
 				}
 				if($_POST['venue']==''){
 					$valid=0;
 					$venueerrmsg="Please enter a venue!";
+				}
+				if($_FILES['pic']['name']==''){
+					$isFileValid=0;
+				}
+				else if($_FILES['pic']['type']='image/jepg'){
+					$isFileValid=1;
+				}
+				else{
+					$isFileValid=0;
+					$picerrmsg="Invalid format";
+					$valid=0;
 				}
 
 				if($valid==1){//inserting if valid
@@ -62,9 +73,21 @@
 					$desc=mysql_real_escape_string($_POST['desc']);
 					$time=mysql_real_escape_string($_POST['time']);
 					$venue=mysql_real_escape_string($_POST['venue']);
-					$sql="INSERT INTO events (uid, ename, edesc, edate, etime, lat, lng, evenue) "
-						."VALUES ('$_SESSION[userid]', '$name', '$desc', '$date', '$time', '$_POST[lat]', '$_POST[lng]', '$_POST[venue]')";
+					$sql="INSERT INTO events (uid, ename, edesc, edate, etime, lat, lng, evenue, pic) "
+						."VALUES ('$_SESSION[userid]', '$name', '$desc', '$date', '$time', '$_POST[lat]', '$_POST[lng]', "
+						."'$_POST[venue]', 'null')";
 					$result=mysqli_query($con, $sql);
+					if($isFileValid){
+						$q="SELECT * FROM events WHERE ename='$_POST[name]' and edate='$date' "
+							."and etime='$time' and evenue='$_POST[venue]' ORDER BY eid desc";
+						$res=mysqli_query($con, $q);
+						$row=mysqli_fetch_array($res);
+
+						$piclocn='./pics/events/'.$row['eid'].'.jpeg';
+						move_uploaded_file($_FILES['pic']['tmp_name'], $piclocn);
+						$q="UPDATE events SET pic='$piclocn' WHERE eid='$row[eid]'";
+						$res=mysqli_query($con, $q);
+					}
 					mysqli_close($con);
 					echo "Added";
 					header('Location:  index.php');
@@ -101,8 +124,11 @@
 		<tr><th><label for="time">Event time</label></th>
 		<td><input type="text" decsription="time" name="time" id="time" size='5' value=<?php echo $_POST['time']; ?>><?php echo $timeerrmsg; ?></td></tr>
 
+		<tr><th><label for="pic">Event pic</label></th>
+		<td><input type="file" decsription="pic" name="pic" id="pic" value=<?php echo $_POST['pic']; ?>><?php echo $picerrmsg; ?></td></tr>
+
 		<tr><th><label for="venue">Event venue</label></th>
-		<td><input type="venue" decsription="venue" name="venue" id="venue" value=<?php echo $_POST['venue']; ?>><?php echo $venueerrmsg; ?></td></tr>
+		<td><input type="text" decsription="venue" name="venue" id="venue" value=<?php echo $_POST['venue']; ?>><?php echo $venueerrmsg; ?></td></tr>
 
 		<tr><th><label for="venue">Select the coordinates</label></th></tr>
 		</tbody>
@@ -111,11 +137,13 @@
 		<input type="text" decsription="lng" name="lng" id="lng" hidden='hidden'>
 		<?php echo $locnerrmsg; ?>
 		<div id="googleMap" style="width:500px;height:380px;"></div>
+
 		<td><input type='submit' id="Add" name="Add" value='Add'><br />
 		Note: 
 		<ol>
 			<li>Enter the date in the format: (dd/mm/yyyy), and time in 24 hour format.</li>
 			<li>Make sure that the venue matches the location on the map. If this is not done it will lead to deletion of the event.</li>
+			<li>If no photo has been attached the photo for the account will be used.</li>
 			<li>Please make sure that the events adhere to the terms of use.</li>
 		</ol>
 	</form>

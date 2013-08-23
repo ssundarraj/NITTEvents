@@ -60,15 +60,25 @@
 					$valid=0;
 					$timeerrmsg="Invalid time!";
 				}
-				if($_POST['lat']==0&&$_POST['lng']==0){
-					$valid=0;
+				if($_POST['lat']==0||$_POST['lng']==0){
+					//$valid=0;
 					$venueerrmsg="Invalid selection!";
 				}
 				if($_POST['venue']==''){
 					$valid=0;
 					$venueerrmsg="Please enter a venue!";
 				}
-
+				if($_FILES['pic']['name']==''){
+					$isFileValid=0;
+				}
+				else if($_FILES['pic']['type']='image/jepg'){
+					$isFileValid=1;
+				}
+				else{
+					$isFileValid=0;
+					$picerrmsg="Invalid format";
+					$valid=0;
+				}
 				if($valid==1){
 					//Changing the data if needed:
 					$date=$_POST['day']."-".$_POST['month']."-".$_POST['year'];
@@ -81,7 +91,19 @@
 						."edate='$date', etime='$time', lat='$_POST[lat]', lng='$_POST[lng]' , evenue='$_POST[venue]'"
 						."WHERE eid='$eid'";
 					$result=mysqli_query($con, $sql);
-					echo $sql;
+
+					if($isFileValid){
+						$q="SELECT * FROM events WHERE ename='$_POST[name]' and edate='$date' "
+							."and etime='$time' and evenue='$_POST[venue]' ORDER BY eid desc";
+						$res=mysqli_query($con, $q);
+						$r=mysqli_fetch_array($res);
+
+						$piclocn='./pics/events/'.$row['eid'].'.jpeg';
+						move_uploaded_file($_FILES['pic']['tmp_name'], $piclocn);
+						$q="UPDATE events SET pic='$piclocn' WHERE eid='$r[eid]'";
+						$res=mysqli_query($con, $q);
+					}
+
 					mysqli_close($con);
 					echo "Modified";
 					header('Location:  index.php');
@@ -117,15 +139,18 @@
 		<td><input type="text" decsription="time" name="time" id="time" size='5' value=<?php echo $row['etime'] ?>>
 			<?php echo $timeerrmsg; ?></td></tr>
 
+		<tr><th><label for="pic">Event picture</label></th>
+		<td><input type="file" decsription="pic" name="pic" id="pic" value=><?php echo $picerrmsg; ?>
+			Existing picture:<img src='<?php echo $row['pic'] ?>' height=60px /></td></tr>
+
 		<tr><th><label for="venue">Event venue</label></th>
 		<td><input type="text" decsription="venue" name="venue" id="venue" value=<?php echo $row['evenue'] ?>>
-			<?php echo $venueerrmsg; ?></td></tr>venue
+			<?php echo $venueerrmsg; ?></td></tr>
 
 		</tbody>
 		</table>
 		<input type="text" decsription="lat" name="lat" id="lat" hidden='hidden' value=<?php echo $row['lat'] ?>>
 		<input type="text" decsription="lng" name="lng" id="lng" hidden='hidden' value=<?php echo $row['lng'] ?>>
-		Select event venue
 		<?php echo $venueerrmsg; ?>
 		<div id="googleMap" style="width:500px;height:380px;"></div>
 		<button id="Modify" name="Modify">Modify</button><br />
