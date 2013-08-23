@@ -18,11 +18,12 @@
 						"lat"=>$row['lat'], "lng"=>$row['lng']);
 			array_push($events, $event);
 		}
-		$obj=array("data"=>$events);
+		$obj=array("status"=>'success', "data"=>$events);
 		echo json_encode($obj);		
 	}
 	else{
-		echo json_encode("err1");
+		$err=array('status'=> 'error', 'errcode'=>'err1');
+		echo json_encode($err);
 	}
 	mysqli_close($con);
 ?>
