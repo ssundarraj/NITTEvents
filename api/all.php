@@ -19,7 +19,7 @@
 			array_push($events, $event);
 		}
 		$obj=array("status"=>'success', "data"=>$events);
-		echo json_encode($obj);		
+		echo json_encode($obj);
 	}
 	else{
 		$err=array('status'=> 'error', 'errcode'=>'err1');
