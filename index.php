@@ -1,7 +1,8 @@
 <html>
 <head>
 	<title>NITT Events - Event Management</title>
-	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+	<script src="./js/bootstrap.js"></script>
 </head>
 <body>
 	<h1>Event management</h1>
@@ -48,9 +49,10 @@
 				echo "</tr><tr>";
 				echo "<td><input type='radio' name='event' value='".$row['eid']
 					."'></td><td>".$row['ename']."</td><td>".$row['edesc']."</td><td>"
-					.$row['etime']."</td><td>".$row['lat'].", ".$row['lng']."</td>";
+					.$row['etime']."</td><td>".$row['evenue']."</td><td>".$row['lat'].", ".$row['lng']."</td>";
 				$counter++;
 			}
+			mysqli_close($con);
 		?>
 		</tr>
 	</tbody>

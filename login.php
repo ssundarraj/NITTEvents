@@ -1,13 +1,18 @@
 <html>
 <head>
 	<title>NITTEvents - Login</title>
-	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+	<script src="./js/bootstrap.js"></script>
+	<script src="jQuery.js"></script>
 </head>
 <body>
+	<div class='col-md-3'></div>
+	<div class='col-md-6'>
 	<h1>Please Login</h1>
 	<?php
 		session_start();
 		require "dbconfig.ini";
+		$errormsg='';
 		if(isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==1){//Checking if already logged in
 			echo "Already logged in";
 			header('Location:  index.php');
@@ -28,7 +33,7 @@
 					}
 
 				}
-				mysql_close();
+				mysqli_close();
 				if($valid==1){
 					$_SESSION['logged_in']=1;
 					$_SESSION['userid']=$uid;
@@ -53,5 +58,6 @@
 		</tbody>
 		</table>
 	</form>
+	</div>
 </body>
 </html>

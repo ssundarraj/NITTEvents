@@ -1,7 +1,8 @@
 <html>
 <head>
 	<title>NITTEvents - Account Management</title>
-	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+	<script src="./js/bootstrap.js"></script>
 </head>
 <body>
 	<h1>Account management</h1>
@@ -37,7 +38,7 @@
 					$newpassword=mysql_real_escape_string($_POST['newpassword']);
 					$sql="UPDATE users SET password= '".md5($newpassword)."' WHERE uid=$_SESSION[userid]";
 					$result=mysqli_query($con, $sql);
-					mysql_close();
+					mysqli_close();
 					$successmsg="Password changed!";
 					header("Location: index.php");
 					exit();

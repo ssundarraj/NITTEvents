@@ -1,9 +1,10 @@
 <html>
 <head>
 	<title>NITT Events - Modify Event</title>
-	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3XEhUpJAW7vlS7WE6325ZSHijZkLd4BU&sensor=false"></script>
 	<script src="modifyevent_script.js"></script>
+	<script src="./js/bootstrap.js"></script>
 </head>
 <body>
 	<h1>Modify event</h1>
@@ -17,7 +18,7 @@
 		$result=mysqli_query($con, $sql);
 		$row=mysqli_fetch_array($result);
 		$userid=$row['uid'];
-		mysql_close($con);
+		mysqli_close($con);
 		if(!isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==0){//checking if logged in
 			echo "Please log in.";
 			header('Location:  login.php');
@@ -62,7 +63,10 @@
 				if($_POST['lat']==0&&$_POST['lng']==0){
 					$valid=0;
 					$venueerrmsg="Invalid selection!";
-					echo "WTF";	
+				}
+				if($_POST['venue']==''){
+					$valid=0;
+					$venueerrmsg="Please enter a venue!";
 				}
 
 				if($valid==1){
@@ -74,11 +78,11 @@
 					$time=mysql_real_escape_string($_POST['time']);
 					$venue=mysql_real_escape_string($_POST['venue']);			
 					$sql="UPDATE events SET ename='$name', edesc='$desc', "
-						."edate='$date', etime='$time', lat='$_POST[lat]', lng='$_POST[lng]' "
+						."edate='$date', etime='$time', lat='$_POST[lat]', lng='$_POST[lng]' , evenue='$_POST[venue]'"
 						."WHERE eid='$eid'";
 					$result=mysqli_query($con, $sql);
 					echo $sql;
-					mysql_close($con);
+					mysqli_close($con);
 					echo "Modified";
 					header('Location:  index.php');
 					exit();
@@ -113,6 +117,10 @@
 		<td><input type="text" decsription="time" name="time" id="time" size='5' value=<?php echo $row['etime'] ?>>
 			<?php echo $timeerrmsg; ?></td></tr>
 
+		<tr><th><label for="venue">Event venue</label></th>
+		<td><input type="text" decsription="venue" name="venue" id="venue" value=<?php echo $row['evenue'] ?>>
+			<?php echo $venueerrmsg; ?></td></tr>venue
+
 		</tbody>
 		</table>
 		<input type="text" decsription="lat" name="lat" id="lat" hidden='hidden' value=<?php echo $row['lat'] ?>>
@@ -121,7 +129,12 @@
 		<?php echo $venueerrmsg; ?>
 		<div id="googleMap" style="width:500px;height:380px;"></div>
 		<button id="Modify" name="Modify">Modify</button><br />
-		Note: Enter the date in the format: (dd/mm/yyyy), and time in 24 hour format.
+		Note: 
+		<ol>
+			<li>Enter the date in the format: (dd/mm/yyyy), and time in 24 hour format.</li>
+			<li>Make sure that the venue matches the location on the map. If this is not done it will lead to deletion of the event.</li>
+			<li>Please make sure that the events adhere to the terms of use.</li>
+		</ol>
 	</form>
 </body>
 </html>

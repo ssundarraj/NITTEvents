@@ -1,10 +1,10 @@
 <html>
 <head>
 	<title>NITT Events - Add Event</title>
-	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3XEhUpJAW7vlS7WE6325ZSHijZkLd4BU&sensor=false"></script>
 	<script src="addevent_script.js"></script>
-	
+	<script src="./js/bootstrap.js"></script>
 </head>
 <body>
 	<h1>Add event</h1>
@@ -48,7 +48,11 @@
 				}
 				if($_POST['lat']==0&&$_POST['lng']==0){
 					$valid=0;
-					$venueerrmsg="Invalid selection!";
+					$locnerrmsg="Invalid selection!";
+				}
+				if($_POST['venue']==''){
+					$valid=0;
+					$venueerrmsg="Please enter a venue!";
 				}
 
 				if($valid==1){//inserting if valid
@@ -58,10 +62,10 @@
 					$desc=mysql_real_escape_string($_POST['desc']);
 					$time=mysql_real_escape_string($_POST['time']);
 					$venue=mysql_real_escape_string($_POST['venue']);
-					$sql="INSERT INTO events (uid, ename, edesc, edate, etime, lat, lng) "
-						."VALUES ('$_SESSION[userid]', '$name', '$desc', '$date', '$time', '$_POST[lat]', '$_POST[lng]')";
+					$sql="INSERT INTO events (uid, ename, edesc, edate, etime, lat, lng, evenue) "
+						."VALUES ('$_SESSION[userid]', '$name', '$desc', '$date', '$time', '$_POST[lat]', '$_POST[lng]', '$_POST[venue]')";
 					$result=mysqli_query($con, $sql);
-					mysql_close($con);
+					mysqli_close($con);
 					echo "Added";
 					header('Location:  index.php');
 					exit();
@@ -90,22 +94,30 @@
 		<td>
 			<input type="text" decsription="day" name="day" id="day" size='2' value=<?php echo $dayval ?> onclick="this.value='';">-
 			<input type="text" decsription="month" name="month" id="month" size='2' value=<?php echo $monval ?> onclick="this.value='';">-
-			<input type="text" decsription="year" name="year" id="year" size='2' value=<?php echo $yearval ?> onclick="this.value='';">
+			<input type="text" decsription="year" name="year" id="year" size='4' value=<?php echo $yearval ?> onclick="this.value='';">
 			<?php echo $dateerrmsg; ?>
 		</td></tr>
 
 		<tr><th><label for="time">Event time</label></th>
 		<td><input type="text" decsription="time" name="time" id="time" size='5' value=<?php echo $_POST['time']; ?>><?php echo $timeerrmsg; ?></td></tr>
 
-		<tr><th><label for="venue">Select event venue</label></th></tr>
+		<tr><th><label for="venue">Event venue</label></th>
+		<td><input type="venue" decsription="venue" name="venue" id="venue" value=<?php echo $_POST['venue']; ?>><?php echo $venueerrmsg; ?></td></tr>
+
+		<tr><th><label for="venue">Select the coordinates</label></th></tr>
 		</tbody>
 		</table>
 		<input type="text" decsription="lat" name="lat" id="lat" hidden='hidden'>
 		<input type="text" decsription="lng" name="lng" id="lng" hidden='hidden'>
-		<?php echo $venueerrmsg; ?>
+		<?php echo $locnerrmsg; ?>
 		<div id="googleMap" style="width:500px;height:380px;"></div>
 		<td><input type='submit' id="Add" name="Add" value='Add'><br />
-		Note: Enter the date in the format: (dd/mm/yyyy), and time in 24 hour format.
+		Note: 
+		<ol>
+			<li>Enter the date in the format: (dd/mm/yyyy), and time in 24 hour format.</li>
+			<li>Make sure that the venue matches the location on the map. If this is not done it will lead to deletion of the event.</li>
+			<li>Please make sure that the events adhere to the terms of use.</li>
+		</ol>
 	</form>
 </body>
 </html>
