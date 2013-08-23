@@ -44,6 +44,26 @@
 					exit();
 				}
 			}
+			if($_FILES['pic']['name']==''){
+				$isFileValid=0;
+			}
+			else if($_FILES['pic']['type']='image/jepg'){
+				$isFileValid=1;
+			}
+			else{
+				$isFileValid=0;
+				$picerrmsg="Invalid format";
+				$valid=0;
+			}
+			if($isFileValid){
+				$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
+				$piclocn='./pics/users/'.$_SESSION['userid'].'.jpeg';
+				unlink($piclocn);
+				move_uploaded_file($_FILES['pic']['tmp_name'], $piclocn);
+				$q="UPDATE users SET pic='$piclocn' WHERE uid='$_SESSION[uid]'";
+				$res=mysqli_query($con, $q);
+				mysqli_close($con);
+			}
 		}
 	?>
 	<a href="logout.php">Logout</a>
@@ -63,9 +83,23 @@
 		<tr><th><label for="newpasswordrpt">Repeat password</label></th>
 		<td><input type="password" id="newpasswordrpt" name="newpasswordrpt"></td></tr>
 
-		<tr><th><label for="Change"></label></th><td><button id="Change" name="Change">Change</button></td></tr>
+		<tr><th><label for="Change password"></label></th><td><button id="Change" name="Change">Change</button></td></tr>
 		</tbody>
 		</table>
 	</form>
+
+	<h2>Change picture:</h2>
+	<form method="post" enctype="multipart/form-data" action="account.php">
+	<table>
+	<tbody>
+	<tr><th><label for="pic">User picture</label></th>
+		<td><input type="file" decsription="pic" name="pic" id="pic" value=><?php echo $picerrmsg; ?>
+			Existing picture:<img src='<?php echo './pics/users/'.$_SESSION['userid'].'.jpeg'; ?>' height=60px /></td></tr>
+
+	<tr><th><label for="Change password"></label></th><td><button id="Change" name="Change">Change</button></td></tr>
+	</tbody>
+	</table>
+	</form>
+
 </body>
 </html>

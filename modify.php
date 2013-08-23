@@ -97,8 +97,8 @@
 							."and etime='$time' and evenue='$_POST[venue]' ORDER BY eid desc";
 						$res=mysqli_query($con, $q);
 						$r=mysqli_fetch_array($res);
-
 						$piclocn='./pics/events/'.$row['eid'].'.jpeg';
+						unlink($piclocn);
 						move_uploaded_file($_FILES['pic']['tmp_name'], $piclocn);
 						$q="UPDATE events SET pic='$piclocn' WHERE eid='$r[eid]'";
 						$res=mysqli_query($con, $q);
