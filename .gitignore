@@ -1,2 +1,4 @@
 dbconfig.ini
 /private
+/pics/events/*
+/pics/users/*
