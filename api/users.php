@@ -10,7 +10,7 @@
 	}
 	if($valid){
 		$events=array();
-		$sql="SELECT * FROM events ORDER BY eid DESC";
+		$sql="SELECT * FROM users";
 		$result=mysqli_query($con, $sql);
 		while($row=mysqli_fetch_array($result)){
 			$event=array("uid"=> $row['uid'], "user"=> $row['username']);
