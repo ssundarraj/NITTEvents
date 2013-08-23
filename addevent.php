@@ -47,7 +47,7 @@
 					$timeerrmsg="Invalid time!";
 				}
 				if($_POST['lat']==0||$_POST['lng']==0){
-					//$valid=0;
+					$valid=0;
 					$locnerrmsg="Invalid selection!";
 				}
 				if($_POST['venue']==''){
