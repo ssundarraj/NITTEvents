@@ -15,7 +15,8 @@
 		while($row=mysqli_fetch_array($result)){
 			$event=array("eid"=> $row['eid'], "uid"=> $row['uid'],"ename"=>$row['ename'], 
 						"edesc"=>$row['edesc'], "edate"=>$row['edate'], "etime"=>$row['etime'],
-						"lat"=>$row['lat'], "lng"=>$row['lng']);
+						"evenue"=>$row['evenue'], "lat"=>$row['lat'], "lng"=>$row['lng'],
+						"pic"=>$row['pic']);
 			array_push($events, $event);
 		}
 		$obj=array("status"=>'success', "data"=>$events);
