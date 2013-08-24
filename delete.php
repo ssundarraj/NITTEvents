@@ -19,9 +19,11 @@
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3XEhUpJAW7vlS7WE6325ZSHijZkLd4BU&sensor=false"></script>
 	<script src="deleteevent_script.js"></script>
-	<script src="./js/bootstrap.js"></script>
 </head>
 <body>
+	<div class="col-md-2">
+	</div>
+	<div class="col-md-10">
 	<h1>Delete event</h1>
 	<?php
 		require "dbconfig.ini";
@@ -80,5 +82,6 @@
 	    <input type='submit' id="Yes" name="action" value='Yes'/>
 	    <input type='submit' id="No" name="action" value='No'/>
 	</form>
+</div>
 </body>
 </html>

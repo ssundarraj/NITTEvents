@@ -4,9 +4,11 @@
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3XEhUpJAW7vlS7WE6325ZSHijZkLd4BU&sensor=false"></script>
 	<script src="addevent_script.js"></script>
-	<script src="./js/bootstrap.js"></script>
 </head>
 <body>
+	<div class="col-md-2">
+	</div>
+	<div class="col-md-10">
 	<h1>Add event</h1>
 	<?php
 		session_start();
@@ -144,8 +146,9 @@
 			<li>Enter the date in the format: (dd/mm/yyyy), and time in 24 hour format.</li>
 			<li>Make sure that the venue matches the location on the map. If this is not done it will lead to deletion of the event.</li>
 			<li>If no photo has been attached the photo for the account will be used.</li>
-			<li>Please make sure that the events adhere to the terms of use.</li>
+			<li>Please make sure that the events adhere to the <a href='terms.php'>terms of use</a>.</li>
 		</ol>
 	</form>
+</div>
 </body>
 </html>

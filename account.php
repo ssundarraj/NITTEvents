@@ -2,9 +2,11 @@
 <head>
 	<title>NITTEvents - Account Management</title>
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
-	<script src="./js/bootstrap.js"></script>
 </head>
 <body>
+	<div class="col-md-2">
+	</div>
+	<div class="col-md-10">
 	<h1>Account management</h1>
 	<?php
 		session_start();
@@ -100,6 +102,6 @@
 	</tbody>
 	</table>
 	</form>
-
+</div>
 </body>
 </html>

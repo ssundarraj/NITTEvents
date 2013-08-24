@@ -2,17 +2,15 @@
 <head>
 	<title>NITTEvents - Login</title>
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
-	<script src="./js/bootstrap.js"></script>
-	<script src="jQuery.js"></script>
 </head>
 <body>
-	<div class='col-md-3'></div>
-	<div class='col-md-6'>
-	<h1>Please Login</h1>
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+	<h1>Login</h1>
 	<?php
 		session_start();
 		require "dbconfig.ini";
-		$errormsg='';
+		$errormsg=' ';
 		if(isset($_SESSION['logged_in'])&&$_SESSION['logged_in']==1){//Checking if already logged in
 			echo "Already logged in";
 			header('Location:  index.php');
@@ -50,7 +48,7 @@
 	<form method="post" enctype="multipart/form-data" action="login.php">
 		<table>
 		<tbody>
-		<tr><?php echo $errormsg ?></tr>
+		<tr> <?php echo $errormsg ?></tr>
 		<tr><th><label for="username">Username</label></th><td>
 		<input type="text" decsription="Username" name="username" id="username"></td></tr>
 		<tr><th><label for="password">Password</label></th><td><input type="password" id="password" name="password"></td></tr>
