@@ -41,7 +41,7 @@
 		<form method="post" enctype="multipart/form-data" action="index.php">
 		<table border="2">
 		<tbody>
-			<th></th><th>Name</th><th>Description</th><th>Image</th><th>Time</th><th>Venue</th><th>Location</th>
+			<th></th><th>Name</th><th>Description</th><th width='80px';>Image</th><th>Time</th><th>Venue</th><th>Location</th>
 			<tr><?php echo $errormsg ?></tr>
 			<tr>
 			<?php
@@ -51,10 +51,13 @@
 				$counter=0; $linebreak=2;
 				//Displaying events in a table:
 				while($row=mysqli_fetch_array($result)){
+					if($row['pic']!=NULL)
+						$imghtml="<img src='".$row['pic']."' height=60px/>";
+					else $imghtml="No image";
 					echo "</tr><tr>";
 					echo "<td><input type='radio' name='event' value='".$row['eid']
 						."'></td><td>".$row['ename']."</td><td>".$row['edesc']."</td><td>"
-						."<img src='".$row['pic']."' height=60px/>"."</td><td>"
+						.$imghtml."</td><td>"
 						.$row['etime']."</td><td>".$row['evenue']."</td><td>".$row['lat'].", ".$row['lng']."</td>";
 					$counter++;
 				}
