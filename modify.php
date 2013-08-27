@@ -82,7 +82,7 @@
 				}
 				if($valid==1){
 					//Changing the data if needed:
-					$date=$_POST['day']."-".$_POST['month']."-".$_POST['year'];
+					$date=$_POST['year']."-".$_POST['month']."-".$_POST['day'];
 					$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
 					$name=mysql_real_escape_string($_POST['name']);
 					$desc=mysql_real_escape_string($_POST['desc']);

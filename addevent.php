@@ -69,15 +69,15 @@
 				}
 
 				if($valid==1){//inserting if valid
-					$date=$_POST['day']."-".$_POST['month']."-".$_POST['year'];
+					$date=$_POST['year']."-".$_POST['month']."-".$_POST['day'];
 					$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
 					$name=mysql_real_escape_string($_POST['name']);
 					$desc=mysql_real_escape_string($_POST['desc']);
 					$time=mysql_real_escape_string($_POST['time']);
 					$venue=mysql_real_escape_string($_POST['venue']);
-					$sql="INSERT INTO events (uid, ename, edesc, edate, etime, lat, lng, evenue, pic) "
+					$sql="INSERT INTO events (uid, ename, edesc, edate, etime, lat, lng, evenue) "
 						."VALUES ('$_SESSION[userid]', '$name', '$desc', '$date', '$time', '$_POST[lat]', '$_POST[lng]', "
-						."'$_POST[venue]', 'null')";
+						."'$_POST[venue]')";
 					$result=mysqli_query($con, $sql);
 					if($isFileValid){
 						$q="SELECT * FROM events WHERE ename='$_POST[name]' and edate='$date' "
