@@ -10,10 +10,10 @@
 	}
 	if($valid){
 		$events=array();
-		$sql="SELECT * FROM events ORDER BY eid DESC";
+		$sql="SELECT e.*, u.username FROM events e LEFT JOIN users u ON e.uid=u.uid ORDER BY eid DESC";
 		$result=mysqli_query($con, $sql);
 		while($row=mysqli_fetch_array($result)){
-			$event=array("eid"=> $row['eid'], "uid"=> $row['uid'],"ename"=>$row['ename'], 
+			$event=array("eid"=> $row['eid'], "uid"=> $row['uid'], "username"=> $row['username'],"ename"=>$row['ename'], 
 						"edesc"=>$row['edesc'], "edate"=>$row['edate'], "etime"=>$row['etime'],
 						"evenue"=>$row['evenue'], "lat"=>$row['lat'], "lng"=>$row['lng'],
 						"pic"=>$row['pic']);
