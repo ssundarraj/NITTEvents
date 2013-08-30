@@ -2,13 +2,33 @@
 <head>
 	<title>NITT Events - Add Event</title>
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./css/styles.css">
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3XEhUpJAW7vlS7WE6325ZSHijZkLd4BU&sensor=false"></script>
 	<script src="addevent_script.js"></script>
+	<style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+      input{
+      	heignt: 100px;
+      }
+    </style>
 </head>
 <body>
-	<div class="col-md-2">
+	 <div class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="navbar-inner">
+		<div class="container">
+		  <a class="brand" href="#">NITT Events</a>
+		  <div class="nav-collapse collapse">
+			<ul class="nav">
+			  <li><a href="logout.php">Logout</a></li>
+			  <li><a href="index.php">Go back</a></li>
+			</ul>
+		  </div><!--/.nav-collapse -->
+		</div>
+	  </div>
 	</div>
-	<div class="col-md-10">
+	<div class="container">
 	<h1>Add event</h1>
 	<?php
 		session_start();
@@ -101,8 +121,6 @@
 			}
 		}
 	?>
-	<a href="logout.php">Logout</a><br />
-	<a href="index.php">Go back</a><br />
 	<form method="post" enctype="multipart/form-data" action="addevent.php">
 	    <table>
 	    <tbody>
@@ -117,9 +135,9 @@
 
 		<tr><th><label >Event date</label></th>
 		<td>
-			<input type="text" decsription="day" name="day" id="day" size='2' value=<?php echo $dayval ?> onclick="this.value='';">-
-			<input type="text" decsription="month" name="month" id="month" size='2' value=<?php echo $monval ?> onclick="this.value='';">-
-			<input type="text" decsription="year" name="year" id="year" size='4' value=<?php echo $yearval ?> onclick="this.value='';">
+			<input type="text" class='input-mini' decsription="day" name="day" id="day" size='4' value=<?php echo $dayval ?> onclick="this.value='';">-
+			<input type="text" class='input-mini' decsription="month" name="month" id="month" size='2' value=<?php echo $monval ?> onclick="this.value='';">-
+			<input type="text" class='input-mini' decsription="year" name="year" id="year" size='4' value=<?php echo $yearval ?> onclick="this.value='';">
 			<?php echo $dateerrmsg; ?>
 		</td></tr>
 
@@ -140,15 +158,20 @@
 		<?php echo $locnerrmsg; ?>
 		<div id="googleMap" style="width:500px;height:380px;"></div>
 
-		<td><input type='submit' id="Add" name="Add" value='Add'><br />
+		<td><input class="btn btn-inverse" type='submit' id="Add" name="Add" value='Add'><br />
 		Note: 
 		<ol>
-			<li>Enter the date in the format: (dd/mm/yyyy), and time in 24 hour format.</li>
+			<li>Enter the date in the format: (yyyy/mm/dd), and time in 24 hour format.</li>
 			<li>Make sure that the venue matches the location on the map. If this is not done it will lead to deletion of the event.</li>
 			<li>If no photo has been attached the photo for the account will be used.</li>
 			<li>Please make sure that the events adhere to the <a href='terms.php'>terms of use</a>.</li>
 		</ol>
 	</form>
+</div>
+<div id="footer">
+	  <div class="container">
+		<p class="muted credit">Created by Delta <a href="terms.php">Terms of use</a></p>
+	</div>
 </div>
 </body>
 </html>

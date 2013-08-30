@@ -6,8 +6,8 @@
 
 NITT Events - Login
 </title>
-<link href="./css/styles.css" media="screen" rel="stylesheet" type="text/css" />
-<script src="./js/script.js" type="text/javascript"></script>
+<link href="./css/loginstyles.css" media="screen" rel="stylesheet" type="text/css" />
+<script src="./js/loginscript.js" type="text/javascript"></script>
 </head>
 <?php
 		session_start();
@@ -59,7 +59,7 @@ NITT Events - Login
 </center>
 <div class='login-box'>
 <h3 class='page-title'>Sign in</h3>
-<form accept-charset="UTF-8" action="testlogin.php" class="new_user" id="new_user" method="post">
+<form accept-charset="UTF-8" action="login.php" class="new_user" id="new_user" method="post">
 	<div style="margin:0;padding:0;display:inline">
 		<input autofocus="autofocus" class="text top" id="user_login" decsription="Username" name="username" id="username" placeholder="Username" size="30" type="text" />
 		<input class="text bottom" id="password" name="password" placeholder="Password" size="30" type="password" />

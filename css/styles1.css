@@ -1,0 +1,20 @@
+.allcontent{
+	text-align: center;
+	margin-right: auto;
+	margin-left:  auto;
+}
+
+.top-banner{
+	width: 200px;
+	text-align: center;
+	margin-right: auto;
+	margin-left:  auto;
+}
+
+.bottom-banner{
+	width: 200px;
+	position: absolute;
+	text-align: center;
+	left: 50%;
+	bottom: 0;
+}

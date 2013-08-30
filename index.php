@@ -1,15 +1,36 @@
 <html>
 <head>
 	<title>NITT Events - Event Management</title>
-	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css" media='screen'>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+      img, td{
+      	height: 60px;
+      }
+    </style>
+
 </head>
 <body>
-	<div class="col-md-2">
+	  <div class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="navbar-inner">
+		<div class="container">
+		  <a class="brand" href="#">NITT Events</a>
+		  <div class="nav-collapse collapse">
+			<ul class="nav">
+			  <li><a href="logout.php">Logout</a></li>
+			  <li><a href="account.php">Manage Account</a></li>
+			</ul>
+		  </div><!--/.nav-collapse -->
+		</div>
+	  </div>
 	</div>
-	<div class="col-md-10">
-		<h1>Event management</h1>
-		<a href="logout.php">Logout</a>
-		<a href="account.php">Manage Account</a><br />
+	<div class="container">
+		<h1>Event Management</h1>
 		<a href="addevent.php">Add event</a>
 		<?php
 			session_start();
@@ -39,7 +60,7 @@
 		
 		
 		<form method="post" enctype="multipart/form-data" action="index.php">
-		<table border="2">
+		<table border="2" class='table table-bordered'>
 		<tbody>
 			<th></th><th>Name</th><th>Description</th><th width='80px';>Image</th><th>Time</th><th>Venue</th><th>Location</th>
 			<tr><?php echo $errormsg ?></tr>
@@ -66,10 +87,15 @@
 			</tr>
 		</tbody>
 		</table>
-			<input type='submit' id="Modify" name="action" value='Modify'/>
-			<input type='submit' id="Delete" name="action" value='Delete'/>
+			<input class="btn btn-inverse" type='submit' id="Modify" name="action" value='Modify'/>
+			<input class="btn btn-inverse" type='submit' id="Delete" name="action" value='Delete'/>
 		</form>
 		
 	</div>
+	<div id="footer">
+	  <div class="container">
+		<p class="muted credit">Created by Delta <a href="terms.php">Terms of use</a></p>
+	  </div>
+	 </div>
 </body>
 </html>

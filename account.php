@@ -2,11 +2,36 @@
 <head>
 	<title>NITTEvents - Account Management</title>
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./css/styles.css">
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3XEhUpJAW7vlS7WE6325ZSHijZkLd4BU&sensor=false"></script>
+	<style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+      .lat{
+      	hidden: true;
+      }
+    img{
+      	height: 60px;
+      }
+
+    </style>
 </head>
 <body>
-	<div class="col-md-2">
+	 <div class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="navbar-inner">
+		<div class="container">
+		  <a class="brand" href="#">NITT Events</a>
+		  <div class="nav-collapse collapse">
+			<ul class="nav">
+			  <li><a href="logout.php">Logout</a></li>
+			  <li><a href="index.php">Go back</a></li>
+			</ul>
+		  </div><!--/.nav-collapse -->
+		</div>
+	  </div>
 	</div>
-	<div class="col-md-10">
+	<div class="container">
 	<h1>Account management</h1>
 	<?php
 		session_start();
@@ -68,8 +93,6 @@
 			}
 		}
 	?>
-	<a href="logout.php">Logout</a>
-	<a href="index.php">Go back</a><br />
 	<p><?php echo $successmsg; ?></p>
 	<h2>Change password:</h2>
 	<form method="post" enctype="multipart/form-data" action="account.php">
@@ -85,7 +108,7 @@
 		<tr><th><label for="newpasswordrpt">Repeat password</label></th>
 		<td><input type="password" id="newpasswordrpt" name="newpasswordrpt"></td></tr>
 
-		<tr><th><label for="Change password"></label></th><td><button id="Change" name="Change">Change</button></td></tr>
+		<tr><th><label for="Change password"></label></th><td><button class="btn btn-inverse" id="Change" name="Change">Change</button></td></tr>
 		</tbody>
 		</table>
 	</form>
@@ -98,10 +121,15 @@
 		<td><input type="file" decsription="pic" name="pic" id="pic" value=><?php echo $picerrmsg; ?>
 			Existing picture:<img src='<?php echo './pics/users/'.$_SESSION['userid'].'.jpeg'; ?>' height=60px /></td></tr>
 
-	<tr><th><label for="Change password"></label></th><td><button id="Change" name="Change">Change</button></td></tr>
+	<tr><th><label for="Change"></label></th><td><button class="btn btn-inverse" id="Change" name="Change">Change</button></td></tr>
 	</tbody>
 	</table>
 	</form>
 </div>
+	<div id="footer">
+	  <div class="container">
+		<p class="muted credit">Created by Delta <a href="terms.php">Terms of use</a></p>
+	  </div>
+	 </div>
 </body>
 </html>

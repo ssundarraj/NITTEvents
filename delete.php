@@ -16,14 +16,37 @@
 </script>
 <head>
 	<title>NITT Events - Delete Event</title>
+	<script src="deleteevent_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./css/styles.css">
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3XEhUpJAW7vlS7WE6325ZSHijZkLd4BU&sensor=false"></script>
 	<script src="deleteevent_script.js"></script>
+	<style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    img{
+      	height: 60px;
+      }
+
+    </style>
+
 </head>
 <body>
-	<div class="col-md-2">
+	 <div class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="navbar-inner">
+		<div class="container">
+		  <a class="brand" href="#">NITT Events</a>
+		  <div class="nav-collapse collapse">
+			<ul class="nav">
+			  <li><a href="logout.php">Logout</a></li>
+			  <li><a href="index.php">Go back</a></li>
+			</ul>
+		  </div><!--/.nav-collapse -->
+		</div>
+	  </div>
 	</div>
-	<div class="col-md-10">
+	<div class="container">
 	<h1>Delete event</h1>
 	<?php
 		require "dbconfig.ini";
@@ -61,8 +84,6 @@
 			}
 		}
 	?>
-	<a href="logout.php">Logout</a>
-	<a href="index.php">Go back</a><br />
 	<p> Are you sure you want to delete the following event?</p>
 	<?php
 		//Displaying the data of the entry
@@ -79,9 +100,14 @@
 	<div id="googleMap" style="width:500px;height:380px;"></div>
 	<br />
 	<form method="post" enctype="multipart/form-data" action="delete.php">
-	    <input type='submit' id="Yes" name="action" value='Yes'/>
-	    <input type='submit' id="No" name="action" value='No'/>
+	    <input type='submit' class="btn btn-inverse" id="Yes" name="action" value='Yes'/>
+	    <input type='submit' class="btn btn-inverse" id="No" name="action" value='No'/>
 	</form>
 </div>
+	<div id="footer">
+	  <div class="container">
+		<p class="muted credit">Created by Delta <a href="terms.php">Terms of use</a></p>
+	  </div>
+	 </div>
 </body>
 </html>

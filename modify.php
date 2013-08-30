@@ -2,12 +2,37 @@
 <head>
 	<title>NITT Events - Modify Event</title>
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./css/styles.css">
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3XEhUpJAW7vlS7WE6325ZSHijZkLd4BU&sensor=false"></script>
+	<script src="modifyevent_script.js"></script>
+	<style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+      .lat{
+      	hidden: true;
+      }
+    img{
+      	height: 60px;
+      }
+
+    </style>
 </head>
 <body>
-	<div class="col-md-2">
+	 <div class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="navbar-inner">
+		<div class="container">
+		  <a class="brand" href="#">NITT Events</a>
+		  <div class="nav-collapse collapse">
+			<ul class="nav">
+			  <li><a href="logout.php">Logout</a></li>
+			  <li><a href="index.php">Go back</a></li>
+			</ul>
+		  </div><!--/.nav-collapse -->
+		</div>
+	  </div>
 	</div>
-	<div class="col-md-10">
+	<div class="container">
 	<h1>Modify event</h1>
 	<?php
 		session_start();
@@ -113,8 +138,6 @@
 			}
 		}
 	?>
-	<a href="logout.php">Logout</a>
-	<a href="index.php">Go back</a><br />
 	<form method="post" enctype="multipart/form-data" action="modify.php">
 	    <table>
 	    <tbody>
@@ -130,9 +153,10 @@
 
 		<tr><th><label >Event date</label></th>
 		<td>
-			<input type="text" decsription="day" name="day" id="day" size='2' value=<?php echo substr($row['edate'], 0,2) ?>>-
-			<input type="text" decsription="month" name="month" id="month" size='2' value=<?php echo substr($row['edate'], 3,2) ?>>-
-			<input type="text" decsription="year" name="year" id="year" size='2' value=<?php echo substr($row['edate'], 6, 4) ?>>
+			
+			<input type="text" class='input-mini' decsription="day" name="day" id="day" size='2' value=<?php echo substr($row['edate'], 8,2)?>>-
+			<input type="text" class='input-mini' decsription="month" name="month" id="month" size='2' value=<?php echo substr($row['edate'], 5,2) ?>>-
+			<input type="text" class='input-mini' decsription="year" name="year" id="year" size='4' value=<?php echo substr($row['edate'], 0, 4) ?>>
 			<?php echo $dateerrmsg; ?>
 		</td></tr>
 
@@ -154,14 +178,20 @@
 		<input type="text" decsription="lng" name="lng" id="lng" hidden='hidden' value=<?php echo $row['lng'] ?>>
 		<?php echo $venueerrmsg; ?>
 		<div id="googleMap" style="width:500px;height:380px;"></div>
-		<button id="Modify" name="Modify">Modify</button><br />
+		<button class='btn btn-inverse' id="Modify" name="Modify">Modify</button><br />
 		Note: 
 		<ol>
 			<li>Enter the date in the format: (dd/mm/yyyy), and time in 24 hour format.</li>
 			<li>Make sure that the venue matches the location on the map. If this is not done it will lead to deletion of the event.</li>
 			<li>Please make sure that the events adhere to the <a href='terms.php'>terms of use</a>.</li>
+			<li><?php echo $row['edate']; ?></li>
 		</ol>
 	</form>
+</div>
+<div id="footer">
+	  <div class="container">
+		<p class="muted credit">Created by Delta <a href="terms.php">Terms of use</a></p>
+	</div>
 </div>
 </body>
 </html>
