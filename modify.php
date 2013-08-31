@@ -1,8 +1,10 @@
 <html>
 <head>
 	<title>NITT Events - Modify Event</title>
-	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="./css/styles.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css" media='screen'>
+	<script src="./js/bootstrap.min.js"></script>
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3XEhUpJAW7vlS7WE6325ZSHijZkLd4BU&sensor=false"></script>
 	<script src="modifyevent_script.js"></script>
 	<style>

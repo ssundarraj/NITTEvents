@@ -1,8 +1,10 @@
 <html>
 <head>
 	<title>NITT Events - Add Event</title>
-	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="./css/styles.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css" media='screen'>
+	<script src="./js/bootstrap.min.js"></script>
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3XEhUpJAW7vlS7WE6325ZSHijZkLd4BU&sensor=false"></script>
 	<script src="addevent_script.js"></script>
 	<style>
@@ -135,9 +137,9 @@
 
 		<tr><th><label >Event date</label></th>
 		<td>
-			<input type="text" class='input-mini' decsription="day" name="day" id="day" size='4' value=<?php echo $dayval ?> onclick="this.value='';">-
-			<input type="text" class='input-mini' decsription="month" name="month" id="month" size='2' value=<?php echo $monval ?> onclick="this.value='';">-
-			<input type="text" class='input-mini' decsription="year" name="year" id="year" size='4' value=<?php echo $yearval ?> onclick="this.value='';">
+			<input type="text" class='input-mini' decsription="day" name="day" id="day" size='4' placeholder=<?php echo $dayval ?>>-
+			<input type="text" class='input-mini' decsription="month" name="month" id="month" size='2' placeholder=<?php echo $monval ?>>-
+			<input type="text" class='input-mini' decsription="year" name="year" id="year" size='4' placeholder=<?php echo $yearval ?>>
 			<?php echo $dateerrmsg; ?>
 		</td></tr>
 
@@ -153,8 +155,8 @@
 		<tr><th><label for="venue">Select the coordinates</label></th></tr>
 		</tbody>
 		</table>
-		<input type="text" decsription="lat" name="lat" id="lat" hidden='hidden'>
-		<input type="text" decsription="lng" name="lng" id="lng" hidden='hidden'>
+		<input type="text" decsription="lat" name="lat" id="lat" style="display:none;">
+		<input type="text" decsription="lng" name="lng" id="lng" style="display:none;">
 		<?php echo $locnerrmsg; ?>
 		<div id="googleMap" style="width:500px;height:380px;"></div>
 

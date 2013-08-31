@@ -1,15 +1,13 @@
 <html>
 <head>
 	<title>NITTEvents - Account Management</title>
-	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="./css/styles.css">
-	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3XEhUpJAW7vlS7WE6325ZSHijZkLd4BU&sensor=false"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css" media='screen'>
+	<script src="./js/bootstrap.min.js"></script>
 	<style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-      .lat{
-      	hidden: true;
       }
     img{
       	height: 60px;
