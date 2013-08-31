@@ -28,11 +28,11 @@
 	  </div>
 	</div>
 <div class="container">
-	<h1>Terms of use:</h1>
+	<h1>Terms of Use</h1>
 	<ol>
-		<li>1</li>
-		<li>2</li>
-		<li>3</li>
+		<li>Delta is not responsible for the content on this website.</li>
+		<li>Delta retains the right to use the data provided in any manner seen fit.</li>
+		<li>The data can be altered and removed without prior notification or permission</li>
 	</ol>
 </div>
 	<div id="footer">

@@ -55,7 +55,7 @@ NITT Events - Login
 <div class='container'>
 <div class='content'>
 <center>
-<img alt="NITT Events logo" src="" />
+<h1>NITT Events</h1>
 </center>
 <div class='login-box'>
 <h3 class='page-title'>Sign in</h3>
