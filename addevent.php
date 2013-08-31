@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css" media='screen'>
 	<script src="./js/bootstrap.min.js"></script>
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3XEhUpJAW7vlS7WE6325ZSHijZkLd4BU&sensor=false"></script>
-	<script src="addevent_script.js"></script>
+	<script src="./js/addevent_script.js"></script>
 	<style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
