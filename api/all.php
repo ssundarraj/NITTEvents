@@ -21,7 +21,8 @@
 	if($valid){
 		$events=array();
 		$sql="SELECT e.*, u.username FROM events e LEFT JOIN users u ON e.uid=u.uid WHERE edate>='$date1'"
-			." ORDER BY edate ASC LIMIT ".$page*$ipp.", ".(($page+1)*$ipp);
+			." ORDER BY edate ASC LIMIT ".$page*$ipp.", ".($ipp);
+		echo $sql;
 		$result=mysqli_query($con, $sql);
 		while($row=mysqli_fetch_array($result)){
 			$event=array("eid"=> $row['eid'], "uid"=> $row['uid'], "username"=> $row['username'],"ename"=>$row['ename'], 
