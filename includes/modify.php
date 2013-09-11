@@ -38,7 +38,7 @@
 		//getting the row corresponding to the entry
 		$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
 		$sql="SELECT * FROM events "
-			."WHERE eid='$_SESSION[eid]'";
+			."WHERE eid='$_GET[eid]'";
 		$result=mysqli_query($con, $sql);
 		$row=mysqli_fetch_array($result);
 		$userid=$row['uid'];
@@ -48,7 +48,7 @@
 			header('Location:  login.php');
 			exit();
 		}
-		else if(!isset($_SESSION['eid'])){
+		else if(!isset($_GET['eid'])){
 			echo("Select an option!");
 			header('Location:  index.php');
 			exit();
@@ -58,7 +58,7 @@
 			exit();
 		}
 		else{
-			$eid=$_SESSION['eid'];
+			$eid=$_GET['eid'];
 			$errormsg="";//initializing error messages
 			$nameerrmsg="";
 			$descerrmsg="";
@@ -136,7 +136,7 @@
 			}
 		}
 	?>
-	<form method="post" enctype="multipart/form-data" action="index.php?action=modify">
+	<form method="post" enctype="multipart/form-data" action=<?php echo "index.php?action=modify&eid=".$_GET['eid'] ?>>
 	    <table>
 	    <tbody>
 	    <tr><td colspan='2'><?php echo $errormsg ?></td></tr>

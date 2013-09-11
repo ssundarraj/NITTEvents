@@ -4,7 +4,7 @@
 	require "dbconfig.ini";
 	$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
 	$sql="SELECT * FROM events "
-		."WHERE eid='$_SESSION[eid]'";
+		."WHERE eid='$_GET[eid]'";
 	$result=mysqli_query($con, $sql);
 	$row=mysqli_fetch_array($result);
 	$userid=$row['uid'];//getting the row corresponding to the entry
@@ -57,7 +57,7 @@
 			header('Location:  login.php');
 			exit();
 		}
-		else if(!isset($_SESSION['eid'])){//checking if form is submitted
+		else if(!isset($_GET['eid'])){//checking if form is submitted
 			echo("Select an option!");
 			header('Location:  index.php');
 			exit();
@@ -67,12 +67,12 @@
 			exit();
 		}
 		else{//Deleting
-			$eid=$_SESSION['eid'];
+			$eid=$_GET['eid'];
 			if(isset($_POST['action'])){
 				if($_POST['action']=='Yes'){
 					$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
 					$sql="DELETE FROM events "
-						."WHERE eid='$eid'";
+						."WHERE eid='$_GET[eid]'";
 					$result=mysqli_query($con, $sql);
 					mysqli_close($con);
 					echo "Deleted";
@@ -91,7 +91,7 @@
 		//Displaying the data of the entry
 		$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
 		$sql="SELECT * FROM events "
-			."WHERE eid='$_SESSION[eid]'";
+			."WHERE eid='$_GET[eid]'";
 		$result=mysqli_query($con, $sql);
 		$row=mysqli_fetch_array($result);
 		echo "<p>".$row['ename']."<br />".$row['edesc']."<br />On: ".$row['edate']." at: ".$row['etime']
@@ -101,7 +101,7 @@
 	?>
 	<div id="googleMap" style="width:500px;height:380px;"></div>
 	<br />
-	<form method="post" enctype="multipart/form-data" action="index.php?action=delete">
+	<form method="post" enctype="multipart/form-data" action=<?php echo "index.php?action=delete&eid=".$_GET['eid'] ?>>
 	    <input type='submit' class="btn btn-inverse" id="Yes" name="action" value='Yes'/>
 	    <input type='submit' class="btn btn-inverse" id="No" name="action" value='No'/>
 	</form>

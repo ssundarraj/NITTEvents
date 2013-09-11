@@ -42,16 +42,15 @@
 			}
 			else{
 				$errormsg="";
-				if(isset($_POST['action'])){//checking if form has been submitted
-					if(!isset($_POST['event'])){
+				if(isset($_GET['actionbtn'])){//checking if form has been submitted
+					if(!isset($_GET['event'])){
 						$errormsg='Please select a valid option.';
 					}
 					else{
-						$_SESSION['eid']=$_POST['event'];
-						if($_POST['action']=='Modify')
-							header('Location:  index.php?action=modify');
-						else if($_POST['action']='Delete')
-							header('Location:  index.php?action=delete');
+						if($_GET['actionbtn']=='Modify')
+							header("Location:  index.php?action=modify&eid=".$_GET['event']);
+						else if($_GET['actionbtn']='Delete')
+							header("Location:  index.php?action=delete&eid=".$_GET['event']);
 						exit();	
 					}
 				}
@@ -59,7 +58,7 @@
 		?>
 		
 		
-		<form method="post" enctype="multipart/form-data" action="index.php">
+		<form method="get" enctype="multipart/form-data" action="index.php">
 		<table border="2" class='table table-bordered'>
 		<tbody>
 			<th></th><th>Name</th><th>Description</th><th width='80px';>Image</th><th>Time</th><th>Venue</th><th>Location</th>
@@ -87,8 +86,8 @@
 			</tr>
 		</tbody>
 		</table>
-			<input class="btn btn-inverse" type='submit' id="Modify" name="action" value='Modify'/>
-			<input class="btn btn-inverse" type='submit' id="Delete" name="action" value='Delete'/>
+			<input class="btn btn-inverse" type='submit' id="Modify" name="actionbtn" value='Modify'/>
+			<input class="btn btn-inverse" type='submit' id="Delete" name="actionbtn" value='Delete'/>
 		</form>
 		
 	</div>
