@@ -1,26 +1,26 @@
 <?php
 	session_start();
 	if(!isset($_SESSION['logged_in'])||!$_SESSION['logged_in']==1){
-		include "login.php";
+		include "./includes/login.php";
 	}
 	else{
 		if(!isset($_GET['action']))
-			include "events.php";
+			include "./includes/events.php";
 		else{
 			if($_GET['action']=='add'){
-				include "addevent.php";
+				include "./includes/addevent.php";
 			}
 			if($_GET['action']=='manage'){
-				include "account.php";
+				include "./includes/account.php";
 			}
 			if($_GET['action']=='modify'){
-				include "modify.php";
+				include "./includes/modify.php";
 			}
 			if($_GET['action']=='delete'){
-				include "delete.php";
+				include "./includes/delete.php";
 			}
 			if($_GET['action']=='terms'){
-				include "terms.php";
+				include "./includes/terms.php";
 			}
 		}
 	}
