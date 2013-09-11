@@ -8,17 +8,13 @@
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3XEhUpJAW7vlS7WE6325ZSHijZkLd4BU&sensor=false"></script>
 	<script src="./js/modifyevent_script.js"></script>
 	<style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-      .lat{
-      	hidden: true;
-      }
-    img{
-      	height: 60px;
-      }
-
-    </style>
+		body{
+			padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+		}
+		.lat{
+			hidden: true;
+		}
+	</style>
 </head>
 <body>
 	 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -83,7 +79,7 @@
 					$valid=0;
 					$dateerrmsg="Invalid date!";
 				}
-				$ex="/^(?:0[1-9]|1[0-2]):[0-5][0-9]$/";
+				$ex="/^(?:0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/";
 				if(!preg_match($ex, $_POST['time'])){
 					$valid=0;
 					$timeerrmsg="Invalid time!";
@@ -146,7 +142,7 @@
 	    <tr><td colspan='2'><?php echo $errormsg ?></td></tr>
 
 	    <tr><th><label for="name">Event name</label></th>
-	    <td><input type="text" decsription="name" name="name" id="name" value=<?php echo $row['ename'] ?>>
+	    <td><input type="text" style="height:30px;" decsription="name" name="name" id="name" value=<?php echo $row['ename'] ?>>
 	    	<?php echo $nameerrmsg; ?></td></tr>
 
 		<tr><th><label for="desc">Description</label></th>
@@ -156,14 +152,14 @@
 		<tr><th><label >Event date</label></th>
 		<td>
 			
-			<input type="text" class='input-mini' decsription="day" name="day" id="day" size='2' value=<?php echo substr($row['edate'], 8,2)?>>-
-			<input type="text" class='input-mini' decsription="month" name="month" id="month" size='2' value=<?php echo substr($row['edate'], 5,2) ?>>-
-			<input type="text" class='input-mini' decsription="year" name="year" id="year" size='4' value=<?php echo substr($row['edate'], 0, 4) ?>>
+			<input type="text" style="height:30px;" class='input-mini' decsription="day" name="day" id="day" size='2' value=<?php echo substr($row['edate'], 8,2)?>>-
+			<input type="text" style="height:30px;" class='input-mini' decsription="month" name="month" id="month" size='2' value=<?php echo substr($row['edate'], 5,2) ?>>-
+			<input type="text" style="height:30px;" class='input-mini' decsription="year" name="year" id="year" size='4' value=<?php echo substr($row['edate'], 0, 4) ?>>
 			<?php echo $dateerrmsg; ?>
 		</td></tr>
 
 		<tr><th><label for="time">Event time</label></th>
-		<td><input type="text" decsription="time" name="time" id="time" size='5' value=<?php echo $row['etime'] ?>>
+		<td><input type="text" style="height:30px;" decsription="time" name="time" id="time" size='5' value=<?php echo $row['etime'] ?>>
 			<?php echo $timeerrmsg; ?></td></tr>
 
 		<tr><th><label for="pic">Event picture</label></th>
@@ -171,13 +167,13 @@
 			Existing picture:<img src='<?php echo $row['pic'] ?>' height=60px /></td></tr>
 
 		<tr><th><label for="venue">Event venue</label></th>
-		<td><input type="text" decsription="venue" name="venue" id="venue" value=<?php echo $row['evenue'] ?>>
+		<td><input type="text" style="height:30px;" decsription="venue" name="venue" id="venue" value=<?php echo $row['evenue'] ?>>
 			<?php echo $venueerrmsg; ?></td></tr>
 
 		</tbody>
 		</table>
-		<input type="text" decsription="lat" name="lat" id="lat" hidden='hidden' value=<?php echo $row['lat'] ?>>
-		<input type="text" decsription="lng" name="lng" id="lng" hidden='hidden' value=<?php echo $row['lng'] ?>>
+		<input type="text" decsription="lat" name="lat" id="lat" style="display:none;" value=<?php echo $row['lat'] ?>>
+		<input type="text" decsription="lng" name="lng" id="lng" style="display:none;" value=<?php echo $row['lng'] ?>>
 		<?php echo $venueerrmsg; ?>
 		<div id="googleMap" style="width:500px;height:380px;"></div>
 		<button class='btn btn-inverse' id="Modify" name="Modify">Modify</button><br />

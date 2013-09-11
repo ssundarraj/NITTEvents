@@ -16,7 +16,6 @@ function initialize(){
 	var oldlat=document.getElementById('lat').value;
 	var oldlng=document.getElementById('lng').value;
 	var oldloc = new google.maps.LatLng(oldlat, oldlng);
-	//console.log(oldloc);
 
 	marker = new google.maps.Marker({
 	 	position: oldloc,

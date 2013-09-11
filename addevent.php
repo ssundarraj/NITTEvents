@@ -8,13 +8,10 @@
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3XEhUpJAW7vlS7WE6325ZSHijZkLd4BU&sensor=false"></script>
 	<script src="./js/addevent_script.js"></script>
 	<style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-      input{
-      	heignt: 100px;
-      }
-    </style>
+		body{
+			padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+		}
+	</style>
 </head>
 <body>
 	 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -65,7 +62,7 @@
 					$valid=0;
 					$dateerrmsg="Invalid date!";
 				}
-				$ex="/^(?:0[1-9]|1[0-2]):[0-5][0-9]$/";
+				$ex="/^(?:0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/";
 				if(!preg_match($ex, $_POST['time'])){
 					$valid=0;
 					$timeerrmsg="Invalid time!";
@@ -129,7 +126,7 @@
 	    <tr><td colspan='2'><?php echo $errormsg ?></td></tr>
 
 	    <tr><th><label for="name">Event name</label></th>
-	    <td><input type="text" decsription="name" name="name" id="name" value=<?php echo $_POST['name']; ?>><?php echo $nameerrmsg; ?></td></tr>
+	    <td><input type="text" style="height:30px;" decsription="name" name="name" id="name" value=<?php echo $_POST['name']; ?>><?php echo $nameerrmsg; ?></td></tr>
 
 		<tr><th><label for="desc">Description</label></th>
 		<td><textarea type="text" rows="4" cols="50" decsription="desc" name="desc" id="desc"><?php echo $_POST['desc']; ?></textarea>
@@ -137,20 +134,20 @@
 
 		<tr><th><label >Event date</label></th>
 		<td>
-			<input type="text" class='input-mini' decsription="day" name="day" id="day" size='4' placeholder=<?php echo $dayval ?>>-
-			<input type="text" class='input-mini' decsription="month" name="month" id="month" size='2' placeholder=<?php echo $monval ?>>-
-			<input type="text" class='input-mini' decsription="year" name="year" id="year" size='4' placeholder=<?php echo $yearval ?>>
+			<input type="text" style="height:30px;" class='input-mini' decsription="day" name="day" id="day" size='4' placeholder=<?php echo $dayval ?>>-
+			<input type="text" style="height:30px;" class='input-mini' decsription="month" name="month" id="month" size='2' placeholder=<?php echo $monval ?>>-
+			<input type="text" style="height:30px;" class='input-mini' decsription="year" name="year" id="year" size='4' placeholder=<?php echo $yearval ?>>
 			<?php echo $dateerrmsg; ?>
 		</td></tr>
 
 		<tr><th><label for="time">Event time</label></th>
-		<td><input type="text" decsription="time" name="time" id="time" size='5' value=<?php echo $_POST['time']; ?>><?php echo $timeerrmsg; ?></td></tr>
+		<td><input type="text" style="height:30px;" decsription="time" name="time" id="time" size='5' value=<?php echo $_POST['time']; ?>><?php echo $timeerrmsg; ?></td></tr>
 
 		<tr><th><label for="pic">Event pic</label></th>
 		<td><input type="file" decsription="pic" name="pic" id="pic" value=<?php echo $_POST['pic']; ?>><?php echo $picerrmsg; ?></td></tr>
 
 		<tr><th><label for="venue">Event venue</label></th>
-		<td><input type="text" decsription="venue" name="venue" id="venue" value=<?php echo $_POST['venue']; ?>><?php echo $venueerrmsg; ?></td></tr>
+		<td><input type="text" style="height:30px;" decsription="venue" name="venue" id="venue" value=<?php echo $_POST['venue']; ?>><?php echo $venueerrmsg; ?></td></tr>
 
 		<tr><th><label for="venue">Select the coordinates</label></th></tr>
 		</tbody>
