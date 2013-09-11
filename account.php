@@ -126,7 +126,7 @@
 </div>
 	<div id="footer">
 	  <div class="container">
-		<p class="muted credit">Created by Delta <a href="terms.php">Terms of use</a></p>
+		<p class="muted credit">Created by Delta <a href="index.php?action=terms">Terms of use</a></p>
 	  </div>
 	 </div>
 </body>

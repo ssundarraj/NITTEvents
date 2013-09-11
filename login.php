@@ -59,8 +59,9 @@ NITT Events - Login
 </center>
 <div class='login-box'>
 <h3 class='page-title'>Sign in</h3>
-<form accept-charset="UTF-8" action="login.php" class="new_user" id="new_user" method="post">
+<form accept-charset="UTF-8" action="index.php" class="new_user" id="new_user" method="post">
 	<div style="margin:0;padding:0;display:inline">
+		<div><?php echo $errormsg; ?></div>
 		<input autofocus="autofocus" class="text top" id="user_login" decsription="Username" name="username" id="username" placeholder="Username" size="30" type="text" />
 		<input class="text bottom" id="password" name="password" placeholder="Password" size="30" type="password" />
 	<div class='clearfix append-bottom-10'></div>
