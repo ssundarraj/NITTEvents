@@ -61,7 +61,7 @@
 		<form method="get" enctype="multipart/form-data" action="index.php">
 		<table border="2" class='table table-bordered'>
 		<tbody>
-			<th></th><th>Name</th><th>Description</th><th width='80px';>Image</th><th>Time</th><th>Venue</th><th>Location</th>
+			<th></th><th>Name</th><th>Description</th><th width='80px';>Image</th><th>Date</th><th>Venue</th><th>Location</th>
 			<tr><?php echo $errormsg ?></tr>
 			<tr>
 			<?php
@@ -78,7 +78,7 @@
 					echo "<td><input type='radio' name='event' value='".$row['eid']
 						."'></td><td>".$row['ename']."</td><td>".$row['edesc']."</td><td>"
 						.$imghtml."</td><td>"
-						.$row['etime']."</td><td>".$row['evenue']."</td><td>".$row['lat'].", ".$row['lng']."</td>";
+						.$row['edate']."</td><td>".$row['evenue']."</td><td>".$row['lat'].", ".$row['lng']."</td>";
 					$counter++;
 				}
 				mysqli_close($con);
