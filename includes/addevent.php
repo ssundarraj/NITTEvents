@@ -132,7 +132,7 @@
 		<tr><th><label >Event date</label></th>
 		<td>
 			<input type="text" style="height:30px;" class='input-mini' decsription="day" name="day" id="day" size='4' placeholder='dd'value=<?php echo $dayval ?>>-
-			<input type="text" style="height:30px;" class='input-mini' decsription="month" name="month" id="month" size='2' placeholder='dd' value=<?php echo $monval ?>>-
+			<input type="text" style="height:30px;" class='input-mini' decsription="month" name="month" id="month" size='2' placeholder='mm' value=<?php echo $monval ?>>-
 			<input type="text" style="height:30px;" class='input-mini' decsription="year" name="year" id="year" size='4' placeholder='yyyy' value=<?php echo $yearval ?>>
 			<?php echo $dateerrmsg; ?>
 		</td></tr>

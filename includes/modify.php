@@ -153,9 +153,9 @@
 		<tr><th><label >Event date</label></th>
 		<td>
 			
-			<input type="text" style="height:30px;" class='input-mini' decsription="day" name="day" id="day" size='2' value=<?php echo substr($row['edate'], 8,2)?>>-
-			<input type="text" style="height:30px;" class='input-mini' decsription="month" name="month" id="month" size='2' value=<?php echo substr($row['edate'], 5,2) ?>>-
-			<input type="text" style="height:30px;" class='input-mini' decsription="year" name="year" id="year" size='4' value=<?php echo substr($row['edate'], 0, 4) ?>>
+			<input type="text" style="height:30px;" class='input-mini' decsription="day" name="day" id="day" size='2' placeholder='dd' value=<?php echo substr($row['edate'], 8,2)?>>-
+			<input type="text" style="height:30px;" class='input-mini' decsription="month" name="month" id="month" size='2' placeholder='mm'  value=<?php echo substr($row['edate'], 5,2) ?>>-
+			<input type="text" style="height:30px;" class='input-mini' decsription="year" name="year" id="year" size='4' placeholder='yyyy'  value=<?php echo substr($row['edate'], 0, 4) ?>>
 			<?php echo $dateerrmsg; ?>
 		</td></tr>
 
