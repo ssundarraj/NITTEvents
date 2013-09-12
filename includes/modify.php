@@ -75,7 +75,9 @@
 					$valid=0;
 					$descerrmsg="Invalid description!";
 				}
-				if(!checkdate($_POST['month'],$_POST['day'], $_POST['year'])){
+				date_default_timezone_set('Asia/Calcutta');
+				$date1=date("Y-m-d");
+				if(!checkdate($_POST['month'],$_POST['day'], $_POST['year'])||strcmp($date1, $_POST['year']."-".$_POST['month']."-".$_POST['day'])>0){
 					$valid=0;
 					$dateerrmsg="Invalid date!";
 				}

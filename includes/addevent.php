@@ -55,7 +55,9 @@
 					$valid=0;
 					$descerrmsg="Invalid description!";
 				}
-				if(!checkdate($_POST['month'],$_POST['day'], $_POST['year'])){
+				date_default_timezone_set('Asia/Calcutta');
+				$date1=date("Y-m-d");
+				if(!checkdate($_POST['month'],$_POST['day'], $_POST['year'])||strcmp($date1, $_POST['year']."-".$_POST['month']."-".$_POST['day'])>0){
 					$valid=0;
 					$dateerrmsg="Invalid date!";
 				}
@@ -161,6 +163,7 @@
 			<li>Make sure that the venue matches the location on the map. If this is not done it will lead to deletion of the event.</li>
 			<li>If no photo has been attached the photo for the account will be used.</li>
 			<li>Please make sure that the events adhere to the <a href='terms.php'>terms of use</a>.</li>
+			<li>				<?php var_dump($date1)."|||"; echo $_POST['year']."-".$_POST['month']."-".$_POST['day']?></li>
 		</ol>
 	</form>
 </div>
