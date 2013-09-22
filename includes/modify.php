@@ -114,8 +114,8 @@
 					$time=mysql_real_escape_string($_POST['time']);
 					$venue=mysql_real_escape_string($_POST['venue']);			
 					$sql="UPDATE events SET ename='$name', edesc='$desc', "
-						."edate='$date', etime='$time', lat='$_POST[lat]', lng='$_POST[lng]' , evenue='$_POST[venue]'"
-						."WHERE eid='$eid'";
+						."edate='$date', etime='$time', lat='$_POST[lat]', lng='$_POST[lng]' , evenue='$_POST[venue]', "
+						."ver = ver +1 WHERE eid='$eid'";
 					$result=mysqli_query($con, $sql);
 
 					date_default_timezone_set('Asia/Calcutta');

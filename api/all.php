@@ -11,6 +11,14 @@
 	
 	date_default_timezone_set('Asia/Calcutta');
 	$date1=date("Y-m-d");
+
+	$page=0;
+	$ipp=20;
+	if(isset($_GET['page']))
+		$page=$_GET['page'];
+	if(isset($_GET['ipp']))	
+		$ipp=$_GET['ipp'];
+
 	if($valid){
 		$events=array();
 		$sql="SELECT e.*, u.username FROM events e LEFT JOIN users u ON e.uid=u.uid WHERE edate>='$date1'"
@@ -20,7 +28,7 @@
 			$event=array("eid"=> $row['eid'], "uid"=> $row['uid'], "username"=> $row['username'],"ename"=>$row['ename'], 
 						"edesc"=>$row['edesc'], "edate"=>$row['edate'], "etime"=>$row['etime'],
 						"evenue"=>$row['evenue'], "lat"=>$row['lat'], "lng"=>$row['lng'],
-						"pic"=>$row['pic']);
+						"pic"=>$row['pic'], "ver"=>$row['ver']);
 			array_push($events, $event);
 		}
 		$obj=array("status"=>'success', "data"=>$events);
