@@ -1,5 +1,5 @@
 <?php
-	require "../dbconfig.ini";
+	require "../includes/dbconfig.ini";
 	$valid=0;
 	$con=mysqli_connect("localhost", $MYDB_USER, $MYDB_PASS,$MYDB_DB);
 	$query="SELECT * FROM tokens";
@@ -8,14 +8,7 @@
 		if($row['token']==$_GET['token'])
 			$valid=1;
 	}
-
-	$page=0;
-	$ipp=20;
-	if(isset($_GET['page']))
-		$page=$_GET['page'];
-	if(isset($_GET['ipp']))	
-		$ipp=$_GET['ipp'];
-
+	
 	date_default_timezone_set('Asia/Calcutta');
 	$date1=date("Y-m-d");
 	if($valid){

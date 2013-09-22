@@ -118,6 +118,11 @@
 						."WHERE eid='$eid'";
 					$result=mysqli_query($con, $sql);
 
+					date_default_timezone_set('Asia/Calcutta');
+					$curdatetime=date("Y-m-d:H:i:s");
+					$updatequery="UPDATE updatetime SET lasttime='$curdatetime'";
+					mysqli_query($con, $updatequery);
+
 					if($isFileValid){
 						$q="SELECT * FROM events WHERE ename='$_POST[name]' and edate='$date' "
 							."and etime='$time' and evenue='$_POST[venue]' ORDER BY eid desc";

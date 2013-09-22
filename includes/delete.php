@@ -74,7 +74,12 @@
 					$sql="DELETE FROM events "
 						."WHERE eid='$_GET[eid]'";
 					$result=mysqli_query($con, $sql);
+					date_default_timezone_set('Asia/Calcutta');
+					$curdatetime=date("Y-m-d:H:i:s");
+					$updatequery="UPDATE updatetime SET lasttime='$curdatetime'";
+					mysqli_query($con, $updatequery);
 					mysqli_close($con);
+
 					echo "Deleted";
 					header('Location:  index.php');
 					exit();
